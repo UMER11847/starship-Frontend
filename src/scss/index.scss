@@ -1,0 +1,23 @@
+ /*Google fonts  */
+@import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;600;700&display=swap");
+
+/* default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Apply the "Cabin" font family to all elements */
+body, html {
+    font-family: "Cabin", sans-serif;
+}
+
+/* Improve font rendering on various browsers */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 500;
+}
