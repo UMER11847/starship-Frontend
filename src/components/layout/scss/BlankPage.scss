@@ -1,0 +1,23 @@
+body {
+    background-color: #F4F5FA;
+    overflow-x: hidden;
+}
+
+.mask {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.plant1 {
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+}
+
+.plant2 {
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
