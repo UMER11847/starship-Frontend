@@ -6,13 +6,14 @@ import Home from "./components/templates/Home"
 // Styling
 import './scss/App.scss'
 import Login from "./components/templates/Login"
+import SingleProduct from "./components/templates/SingleProduct"
 
 const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Main/>} >
         <Route index element={<Home/>} />
-        <Route path="product:id" />
+      <Route path="product:id" element={<SingleProduct/>}/>
       </Route>
       <Route path="/login" element={<Login/>} />
       <Route path="/register" />
