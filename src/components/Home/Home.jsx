@@ -1,9 +1,19 @@
-import Banner from "./Bannner/Banner";
 import "./Home.scss"
+import Banner from "./Bannner/Banner";
+import Category from "./Category/Category";
+import Products from "../Products/Products";
 const Home = () => {
   return (
     <div>
-      <h1 className='home'><Banner/></h1>
+      
+        <Banner/>
+        <div className="main-content">
+          <div className="layout">
+        <Category />
+        <Products />
+          </div>
+        </div>
+        
     </div>
   )
 }
