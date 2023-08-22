@@ -1,7 +1,7 @@
 // Core
 import { Link as RouterLink } from "react-router-dom"
 // Components
-import { Checkbox, Typography, FormControlLabel, Link} from "@mui/material"
+import { Checkbox, Typography, FormControlLabel, Link } from "@mui/material"
 import BlankPage from "../layout/BlankPage"
 import FormCard from "../layout/FormCard"
 // Styling
@@ -10,7 +10,7 @@ import ButtonRegin from "../styles/ButtonRegin.style"
 import FormFieldMain from "../styles/FormFieldMain.style"
 import "../../scss/global.scss"
 
-const Login = () => {
+const Register = () => {
   return (
     <BlankPage>
         <FormCard style={{maxWidth: "450px"}} >
@@ -20,22 +20,17 @@ const Login = () => {
                 </Typography>
             </div>
             <Typography style={{margin: "10px 0px"}} variant="h5">
-                Welcome to Starship
+                Adventure starts here
             </Typography>
+            <FormFieldMain label="Username" variant="outlined" />
             <FormFieldMain label="Email" variant="outlined" />
-            <FormFieldMain type="password" label="Password" variant="outlined" />
-            <div className="flex-middle" >
-                <FormControlLabel control={<Checkbox />} label="Remember Me" />
-                <Typography>
-                    <Link underline="none">
-                        Forgot Password?
-                    </Link>
-                </Typography>
-            </div>
-            <ButtonRegin variant="contained">Login</ButtonRegin>
+            <FormFieldMain label="Password" type="password" variant="outlined" />
+            <FormFieldMain label="Confirm Password" type="password" variant="outlined" />
+            <FormControlLabel control={<Checkbox />} label="I agree to privacy policy & terms" />
+            <ButtonRegin variant="contained">Sign Up</ButtonRegin>
             <div className="text-center" style={{margin: "10px"}}>
                 <Typography>
-                    New on our platform? <Link to="/register" component={RouterLink} underline="none">Create an account</Link>
+                    Already have an account? <Link to="/login" component={RouterLink} underline="none">Sign in instead</Link>
                 </Typography>
             </div>
         </FormCard>
@@ -43,4 +38,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register

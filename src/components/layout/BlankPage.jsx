@@ -13,9 +13,9 @@ const BlankPage = ({ children }) => {
       <Container maxWidth="sm">
         {children}
       </Container>
+      <img className="mask" src={mask}/>
       <img className="plant1" src={plant1} />
       <img className="plant2" src={plant2}/>
-      <img className="mask" src={mask}/>
     </>
   )
 }

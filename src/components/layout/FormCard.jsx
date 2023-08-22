@@ -3,9 +3,9 @@ import { Card } from "@mui/material"
 // Styling
 import "./scss/FormCard.scss"
 
-const FormCard = ({ children }) => {
+const FormCard = ({ children, style }) => {
   return (
-    <Card className="form-card" style={{maxWidth: "450px"}} variant="outlined">
+    <Card className="form-card" style={style} variant="outlined">
         {children}
     </Card>
   )
