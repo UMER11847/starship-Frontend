@@ -27,7 +27,7 @@ const Login = () => {
             <div className="flex-middle" >
                 <FormControlLabel control={<Checkbox />} label="Remember Me" />
                 <Typography>
-                    <Link underline="none">
+                    <Link style={{position: "relative", top: "6px"}} className="link-underline-animation" to="/" component={RouterLink} underline="none">
                         Forgot Password?
                     </Link>
                 </Typography>
@@ -35,7 +35,7 @@ const Login = () => {
             <ButtonRegin variant="contained">Login</ButtonRegin>
             <div className="text-center" style={{margin: "10px"}}>
                 <Typography>
-                    New on our platform? <Link to="/register" component={RouterLink} underline="none">Create an account</Link>
+                    New on our platform? <Link style={{position: "relative", top: "6px"}} className="link-underline-animation" to="/register" component={RouterLink} underline="none">Create an account</Link>
                 </Typography>
             </div>
         </FormCard>

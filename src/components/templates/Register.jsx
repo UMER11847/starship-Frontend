@@ -30,7 +30,7 @@ const Register = () => {
             <ButtonRegin variant="contained">Sign Up</ButtonRegin>
             <div className="text-center" style={{margin: "10px"}}>
                 <Typography>
-                    Already have an account? <Link to="/login" component={RouterLink} underline="none">Sign in instead</Link>
+                    Already have an account? <Link to="/login" component={RouterLink} style={{position: "relative", top: "6px"}} className="link-underline-animation" underline="none">Sign in instead</Link>
                 </Typography>
             </div>
         </FormCard>
