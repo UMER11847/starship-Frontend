@@ -5,9 +5,11 @@ import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineHeart } from "react-icons/ai";
 import { TbSearch } from "react-icons/tb";
 import "./scss/Header.scss";
-
+//Cart
+import Cart from "./Cart";
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [ShowCart, setShowCart] = useState(false);
 
   const ScrollHandler = () => {
     const offSet = window.scrollY;
@@ -23,6 +25,7 @@ const Header = () => {
   }, [scrolled]);
 
   return (
+    <>
     <header className={`main-header ${scrolled ? "sticky-header" : ""}`}>
       <div className="header-content">
         <ul className="left">
@@ -34,13 +37,15 @@ const Header = () => {
         <div className="right">
           <TbSearch />
           <AiOutlineHeart />
-          <span className="cart-icon">
+          <span className="cart-icon" onClick={()=> setShowCart(true) }>
             <CgShoppingCart />
             <span>6</span>
           </span>
         </div>
       </div>
     </header>
+    {ShowCart && <Cart setShowCart={setShowCart} />}
+    </>
   );
 };
 
