@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom"
 import Main from "./components/layout/Main"
 import Home from "./components/templates/Home"
 import Register from "./components/templates/Register"
+import Error404 from "./components/templates/Error404"
 // Styling
 import './scss/App.scss'
 import Login from "./components/templates/Login"
@@ -14,10 +15,11 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Main/>} >
         <Route index element={<Home/>} />
-      <Route path="product:id" element={<SingleProduct/>}/>
+        <Route path="product:id" element={<SingleProduct/>}/>
       </Route>
       <Route path="/login" element={<Login/>} />
       <Route path="/register" element={<Register/>} />
+      <Route path="*" element={<Error404/>} />
     </Routes>
   )
 }
