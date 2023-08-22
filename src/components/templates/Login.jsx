@@ -14,30 +14,32 @@ const Login = () => {
   return (
     <BlankPage>
         <FormCard style={{maxWidth: "450px"}} >
-            <div style={{textAlign: "center", margin: "20px"}}>
+            <header style={{textAlign: "center", margin: "20px"}}>
                 <Typography variant="h4">
                     <FaRocket/> Starship
                 </Typography>
-            </div>
-            <Typography style={{margin: "10px 0px"}} variant="h5">
-                Welcome to Starship
-            </Typography>
-            <FormFieldMain label="Email" variant="outlined" />
-            <FormFieldMain type="password" label="Password" variant="outlined" />
-            <div className="flex-middle" >
-                <FormControlLabel control={<Checkbox />} label="Remember Me" />
-                <Typography>
-                    <Link style={{position: "relative", top: "6px"}} className="link-underline-animation" to="/" component={RouterLink} underline="none">
-                        Forgot Password?
-                    </Link>
+            </header>
+            <main>
+                <Typography style={{margin: "10px 0px"}} variant="h5">
+                    Welcome to Starship
                 </Typography>
-            </div>
-            <ButtonRegin variant="contained">Login</ButtonRegin>
-            <div className="text-center" style={{margin: "10px"}}>
+                <FormFieldMain label="Email" variant="outlined" />
+                <FormFieldMain type="password" label="Password" variant="outlined" />
+                <div className="flex-middle" >
+                    <FormControlLabel control={<Checkbox />} label="Remember Me" />
+                    <Typography>
+                        <Link style={{position: "relative", top: "6px"}} className="link-underline-animation" to="/password/reset" component={RouterLink} underline="none">
+                            Forgot Password?
+                        </Link>
+                    </Typography>
+                </div>
+                <ButtonRegin variant="contained">Login</ButtonRegin>
+            </main>
+            <footer className="text-center" style={{margin: "10px"}}>
                 <Typography>
                     New on our platform? <Link style={{position: "relative", top: "6px"}} className="link-underline-animation" to="/register" component={RouterLink} underline="none">Create an account</Link>
                 </Typography>
-            </div>
+            </footer>
         </FormCard>
     </BlankPage>
   )
