@@ -31,7 +31,6 @@ const App = () => {
       <Route path="/register" element={<Register/>} />
       <Route path="*" element={<Error404/>} />
       <Route path="/about" element={<About/>} />
-
     </Routes>
   )
 }

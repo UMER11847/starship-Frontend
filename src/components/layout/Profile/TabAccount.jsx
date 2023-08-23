@@ -77,8 +77,6 @@ const TabAccount = () => {
             <TextField
                 fullWidth
                 label="Name"
-                placeholder="John Doe"
-                defaultValue="John Doe"
             />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -86,8 +84,7 @@ const TabAccount = () => {
                 fullWidth
                 type="email"
                 label="Email"
-                placeholder="johnDoe@example.com"
-                defaultValue="johnDoe@example.com"
+               
             />
             </Grid>
             <Grid item xs={12} sm={6}>
