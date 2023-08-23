@@ -3,7 +3,7 @@ import { Link as RouterLink } from "react-router-dom"
 // Components
 import { Checkbox, Typography, FormControlLabel, Link } from "@mui/material"
 import BlankPage from "../layout/BlankPage"
-import FormCard from "../layout/FormCard"
+import FormCard from "../styles/FormCard"
 // Styling
 import { FaRocket } from "react-icons/fa"
 import ButtonRegin from "../styles/ButtonRegin.style"
@@ -24,7 +24,7 @@ const Register = () => {
                     Adventure starts here
                 </Typography>
                 <FormFieldMain label="Username" variant="outlined" />
-                <FormFieldMain label="Email" variant="outlined" />
+                <FormFieldMain label="Email" type="email" variant="outlined" />
                 <FormFieldMain label="Password" type="password" variant="outlined" />
                 <Typography>
                     Password Requirements:<br/>

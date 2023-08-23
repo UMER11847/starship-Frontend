@@ -1,5 +1,5 @@
 // Components
-import FormCard from "../layout/FormCard"
+import FormCard from "../styles/FormCard"
 import { Typography } from "@mui/material"
 import FormFieldMain from "../styles/FormFieldMain.style"
 // Styling

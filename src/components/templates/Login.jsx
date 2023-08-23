@@ -3,7 +3,7 @@ import { Link as RouterLink } from "react-router-dom"
 // Components
 import { Checkbox, Typography, FormControlLabel, Link} from "@mui/material"
 import BlankPage from "../layout/BlankPage"
-import FormCard from "../layout/FormCard"
+import FormCard from "../styles/FormCard"
 // Styling
 import { FaRocket } from "react-icons/fa"
 import ButtonRegin from "../styles/ButtonRegin.style"
@@ -23,7 +23,7 @@ const Login = () => {
                 <Typography style={{margin: "10px 0px"}} variant="h5">
                     Welcome to Starship
                 </Typography>
-                <FormFieldMain label="Email" variant="outlined" />
+                <FormFieldMain label="Email" type="email" variant="outlined" />
                 <FormFieldMain type="password" label="Password" variant="outlined" />
                 <div className="flex-middle" >
                     <FormControlLabel control={<Checkbox />} label="Remember Me" />
