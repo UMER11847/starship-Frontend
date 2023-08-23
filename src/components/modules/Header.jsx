@@ -1,7 +1,8 @@
 // Core
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 // Styling
+import { Link } from "@mui/material";
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineHeart } from "react-icons/ai";
 import { TbSearch } from "react-icons/tb";
@@ -40,7 +41,11 @@ const Header = () => {
           <li>About</li>
           <li>Categories</li>
         </ul>
-        <div className="center">TECH STORE</div>
+        <div className="center">
+          <Link to="/" component={RouterLink} underline="none" color="inherit">
+            TECH STORE
+          </Link>
+        </div>
         <div className="right">
           <TbSearch onClick={()=> setShowSearch(true) } />
           <AiOutlineHeart />
