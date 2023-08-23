@@ -1,5 +1,5 @@
 // Components
-import { Grid, TextField, CardContent, Button, Divider, Typography, Box } from "@mui/material";
+import { Grid, TextField, CardContent, Button, Divider, Box } from "@mui/material";
 // Styling
 import BasicCard from "../../styles/BasicCard"
 import TextRestrain from "../../styles/TextRestrain"
