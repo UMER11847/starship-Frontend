@@ -26,7 +26,7 @@ const Register = () => {
                 <FormFieldMain label="Username" variant="outlined" />
                 <FormFieldMain label="Email" type="email" variant="outlined" />
                 <FormFieldMain label="Password" type="password" variant="outlined" />
-                <Typography>
+                <Typography variant="caption">
                     Password Requirements:<br/>
                     &emsp;&bull; Must be greater than 8 characters<br/>
                     &emsp;&bull; Must include atleast 1 uppercase letter<br/>

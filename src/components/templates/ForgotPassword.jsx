@@ -19,7 +19,7 @@ const ForgotPassword = () => {
                 Forgot your password?
             </Typography>
             <FormFieldMain label="Email" variant="outlined" />
-            <Typography>
+            <Typography variant="caption">
                 Enter your email to reset password
             </Typography>
             <ButtonRegin variant="contained" >Send Email</ButtonRegin>
