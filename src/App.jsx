@@ -13,6 +13,7 @@ import Login from "./components/templates/Login"
 import SingleProduct from "./components/templates/SingleProduct"
 import ForgotPassword from "./components/templates/ForgotPassword"
 import Profile from "./components/templates/Profile"
+import About from "./components/modules/About"
 
 const App = () => {
   return (
@@ -29,6 +30,8 @@ const App = () => {
       <Route path="/login" element={<Login/>} />
       <Route path="/register" element={<Register/>} />
       <Route path="*" element={<Error404/>} />
+      <Route path="/about" element={<About/>} />
+
     </Routes>
   )
 }

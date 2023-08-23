@@ -1,5 +1,6 @@
 // Core
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 // Styling
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -33,7 +34,9 @@ const Header = () => {
     <header className={`main-header ${scrolled ? "sticky-header" : ""}`}>
       <div className="header-content">
         <ul className="left">
-          <li>Home</li>
+          <li>
+           Home
+          </li>
           <li>About</li>
           <li>Categories</li>
         </ul>
