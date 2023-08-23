@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineHeart } from "react-icons/ai";
 import { TbSearch } from "react-icons/tb";
+import { CgProfile } from "react-icons/cg"
 import "./scss/Header.scss";
 //Cart
 import Cart from "./Cart";
@@ -43,10 +44,12 @@ const Header = () => {
         <div className="center">TECH STORE</div>
         <div className="right">
           <TbSearch onClick={()=> setShowSearch(true) } />
-          <AiOutlineHeart />
           <span className="cart-icon" onClick={()=> setShowCart(true) }>
             <CgShoppingCart />
             <span>6</span>
+          </span>
+          <span className="profile">
+          <CgProfile />
           </span>
         </div>
       </div>
