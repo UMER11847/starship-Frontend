@@ -7,9 +7,13 @@ import { TbSearch } from "react-icons/tb";
 import "./scss/Header.scss";
 //Cart
 import Cart from "./Cart";
+//search
+import Search from "./Search";
+
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [ShowCart, setShowCart] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
 
   const ScrollHandler = () => {
     const offSet = window.scrollY;
@@ -35,7 +39,7 @@ const Header = () => {
         </ul>
         <div className="center">TECH STORE</div>
         <div className="right">
-          <TbSearch />
+          <TbSearch onClick={()=> setShowSearch(true) } />
           <AiOutlineHeart />
           <span className="cart-icon" onClick={()=> setShowCart(true) }>
             <CgShoppingCart />
@@ -45,6 +49,7 @@ const Header = () => {
       </div>
     </header>
     {ShowCart && <Cart setShowCart={setShowCart} />}
+    {showSearch && <Search setShowSearch={setShowSearch} />}
     </>
   );
 };
