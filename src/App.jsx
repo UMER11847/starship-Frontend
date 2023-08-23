@@ -12,6 +12,7 @@ import './scss/App.scss'
 import Login from "./components/templates/Login"
 import SingleProduct from "./components/templates/SingleProduct"
 import ForgotPassword from "./components/templates/ForgotPassword"
+import About from "./components/modules/About"
 
 const App = () => {
   return (
@@ -27,6 +28,8 @@ const App = () => {
         <Route path=":token" element={<ResetPassword/>} />
       </Route>
       <Route path="*" element={<Error404/>} />
+      <Route path="/about" element={<About/>} />
+
     </Routes>
   )
 }
