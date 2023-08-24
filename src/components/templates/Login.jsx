@@ -5,7 +5,7 @@ import { Checkbox, Typography, FormControlLabel, Link} from "@mui/material"
 import BlankPage from "../layout/BlankPage"
 import FormCard from "../styles/FormCard"
 // Styling
-import { FaRocket } from "react-icons/fa"
+import { GoRocket as Rocket } from "react-icons/go"
 import ButtonRegin from "../styles/ButtonRegin.style"
 import FormFieldMain from "../styles/FormFieldMain.style"
 import "../../scss/global.scss"
@@ -16,7 +16,7 @@ const Login = () => {
         <FormCard style={{maxWidth: "450px"}} >
             <header style={{textAlign: "center", margin: "20px"}}>
                 <Typography variant="h4">
-                    <FaRocket/> Starship
+                    <Rocket style={{position: "relative", top: "5px"}} /> Starship
                 </Typography>
             </header>
             <main>

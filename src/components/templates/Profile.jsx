@@ -6,9 +6,10 @@ import FormCard from "../styles/FormCard";
 import TabAccount from "../layout/Profile/TabAccount";
 import { TabList, TabPanel, TabContext } from '@mui/lab'
 import TabSecurity from '../layout/Profile/TabSecurity';
+import TabAddresses from '../layout/Profile/TabAddresses';
 // Styling
 import { MdAccountCircle, MdLockOpen, MdMap } from 'react-icons/md'
-import TabAddresses from '../layout/Profile/TabAddresses';
+import "../../scss/global.scss"
 
 
 const Profile = () => {
@@ -34,7 +35,7 @@ const Profile = () => {
               label={
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: "center" }}>
                   <MdAccountCircle style={{fontSize: "25px"}} />
-                  <Typography>&nbsp;Account</Typography>
+                  <Typography className='tab-name' >&nbsp;Account</Typography>
                 </Box>
               }
             />
@@ -43,7 +44,7 @@ const Profile = () => {
               label={
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   <MdLockOpen style={{fontSize: "25px"}} />
-                  <Typography>&nbsp;Security</Typography>
+                  <Typography className='tab-name' >&nbsp;Security</Typography>
                 </Box>
               }
             />
@@ -52,7 +53,7 @@ const Profile = () => {
               label={
                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                   <MdMap style={{fontSize: "25px"}} />
-                  <Typography>&nbsp;Addresses</Typography>
+                  <Typography className='tab-name' >&nbsp;Addresses</Typography>
                 </Box>
               }
             />

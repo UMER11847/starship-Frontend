@@ -14,6 +14,7 @@ import SingleProduct from "./components/templates/SingleProduct"
 import ForgotPassword from "./components/templates/ForgotPassword"
 import Profile from "./components/templates/Profile"
 import About from "./components/modules/About"
+import Admin from "./components/templates/Admin"
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Route index element={<Home/>} />
         <Route path="product/:id" element={<SingleProduct/>}/>
         <Route path="profile" element={<Profile/>} />
+        <Route path="admin" element={<Admin/>} />
       </Route>
       <Route path="/password/reset" element={<BlankMain/>}>
         <Route index element={<ForgotPassword/>}/>

@@ -4,14 +4,14 @@ import { Typography } from "@mui/material"
 import FormFieldMain from "../styles/FormFieldMain.style"
 // Styling
 import ButtonRegin from "../styles/ButtonRegin.style"
-import { FaRocket } from "react-icons/fa"
+import { GoRocket as Rocket } from "react-icons/go"
 
 const ForgotPassword = () => {
   return (
     <FormCard style={{maxWidth: "450px"}} >
         <header style={{textAlign: "center", margin: "20px"}}>
             <Typography variant="h4">
-                <FaRocket/> Starship
+                <Rocket style={{position: "relative", top: "5px"}} /> Starship
             </Typography>
         </header>
         <main>

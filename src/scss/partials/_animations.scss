@@ -1,6 +1,6 @@
 $transition-timing: cubic-bezier(0.76, 0, 0.24, 1);
 
-@mixin link-underline($color: black) {
+@mixin link-underline($color: inherit) {
   overflow: hidden;
   position: relative;
   display: inline-block;

@@ -1,4 +1,5 @@
 @import "./partials/animations";
+@import "./partials/screens";
 
 .flex-middle {
     display: flex;
@@ -11,5 +12,11 @@
 }
 
 .link-underline-animation {
-    @include link-underline($color: #836CE0)
+    @include link-underline($color: #836CE0);
+}
+
+.tab-name {
+    @include sm {
+        display: none;
+    }
 }
