@@ -12,6 +12,7 @@ import "./scss/Header.scss";
 import Cart from "./Cart";
 //search
 import Search from "./Search";
+import AccountMenu from "./AccountMenu";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -54,7 +55,7 @@ const Header = () => {
             <span>6</span>
           </span>
           <span className="profile">
-          <CgProfile />
+          <AccountMenu/>
           </span>
         </div>
       </div>
