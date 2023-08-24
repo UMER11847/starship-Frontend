@@ -6,9 +6,9 @@ import {
     FaLinkedinIn,
     FaPinterest,
     FaCartPlus, } from "react-icons/fa";
-
     import RelatedProduct from "../modules/RelatedProduct";
     import "./scss/SingleProduct.scss"
+import  Star  from "../modules/Star";
 
     const SingleProduct = () => {
     return (
@@ -20,6 +20,8 @@ import {
                     </div>
                     <div className="right">
                         <span className="name">Earbuds</span>
+                         <Star/>
+                         <span className="divider" />
                         <span className="price">488$</span>
                         <span className="desc">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit.
