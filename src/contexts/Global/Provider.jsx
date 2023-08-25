@@ -3,35 +3,12 @@ import GlobalContext from "./Context";
 import GlobalReducer from "./Reducer";
 import GlobalActions from "./Actions";
 import { useNavigate } from "react-router-dom";
+// Utils
+import getUser from "../../utils/getUser"
+import getCookies from "../../utils/getCookies"
+import { getBackendURL } from "../../utils/api"
 
 const GlobalProvider = ({ children }) => {
-  function getCookies() {
-    const cookiesString = document.cookie;
-    const cookiesArray = cookiesString.split('; ');
-
-    const cookiesObject = {};
-
-    cookiesArray.forEach(cookie => {
-      const [name, value] = cookie.split('=');
-      cookiesObject[name] = value;
-    }); 
-    return cookiesObject
-  } 
-
-
-  function getBackendURL(path) {
-    return `http://${import.meta.env.VITE_BACKEND_HOST}:${
-        import.meta.env.VITE_BACKEND_PORT
-      }${import.meta.env.VITE_BACKEND_BASE_ROUTE}` + (path || "")
-  }
-
-  function getUser() {
-    const user = JSON.parse(localStorage.getItem("user"))
-    return user ? user : {
-      loggedIn: false,
-      role: "anonymous"
-    }
-  }
 
   const initialState = {
     user: getUser(),
