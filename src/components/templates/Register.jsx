@@ -1,6 +1,6 @@
 // Core
 import axios from "axios"
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import GlobalContext from "../../contexts/Global/Context";
 // Components
@@ -17,6 +17,10 @@ const Register = () => {
   const [global, globalActions] = useContext(GlobalContext)
   const [policyAgreed, setPolicyAgreed] = useState(false);
 
+  useEffect(() => {
+    if(global.user.loggedIn) global.navigate("/")
+  }, [])
+
   async function submitHandler(e) {
     e.preventDefault()
     const formData = new FormData(e.target)
@@ -30,7 +34,7 @@ const Register = () => {
 
     try {
       const res = await axios.post(global.api("/user/register"), payload, {withCredentials:true})
-      globalActions.login(res.data.user)
+      globalActions.updateUser(res.data.user)
       global.navigate("/")
     } catch (err) {
       console.log(err)

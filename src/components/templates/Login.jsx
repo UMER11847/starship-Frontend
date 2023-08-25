@@ -40,7 +40,7 @@ const Login = () => {
       password
     }, {withCredentials:true});
 
-    globalActions.login(res.data.user);
+    globalActions.updateUser(res.data.user);
 
     if (remember) {
       localStorage.setItem("email", email);

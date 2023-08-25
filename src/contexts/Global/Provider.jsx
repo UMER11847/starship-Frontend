@@ -17,7 +17,7 @@ const GlobalProvider = ({ children }) => {
     navigate: useNavigate()
   };
 
-  const [state, dispatch] = useReducer(GlobalReducer, initialState);
+  const [global, dispatch] = useReducer(GlobalReducer, initialState);
 
   const dispatcher = (type) => {
     return (payload) =>
@@ -27,12 +27,12 @@ const GlobalProvider = ({ children }) => {
       });
   };
 
-  const login = dispatcher(GlobalActions.LOGIN);
-  const logout = dispatcher(GlobalActions.LOGOUT);
+  const updateUser = dispatcher(GlobalActions.UPDATE_USER);
+  const resetUser = dispatcher(GlobalActions.RESET_USER);
 
-  console.log(state)
+  console.log(global)
   return (
-    <GlobalContext.Provider value={[state, { login, logout }]}>
+    <GlobalContext.Provider value={[global, { updateUser, resetUser }]}>
       {children}
     </GlobalContext.Provider>
   );
