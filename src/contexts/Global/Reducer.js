@@ -7,15 +7,18 @@ const GlobalReducer = (state, action) => {
                 loggedIn: true,
                 ...action.payload
             }
+            localStorage.setItem("user", JSON.stringify(user))
             return {...state, user }
         }
         case GlobalActions.LOGOUT: {
+            const user = {
+                loggedIn: false,
+                role: "anonymous"
+            }
+            localStorage.setItem("user", JSON.stringify(user))
             return {
                 ...state,
-                user: {
-                    loggedIn: false,
-                    role: "anonymous"
-                }
+                user
             }
         }
         default:

@@ -1,7 +1,7 @@
 // Core
 import axios from "axios"
 import { useState, useContext } from "react";
-import { Link as RouterLink, redirect } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import GlobalContext from "../../contexts/Global/Context";
 // Components
 import { Checkbox, Typography, FormControlLabel, Link } from "@mui/material";
@@ -29,9 +29,9 @@ const Register = () => {
     }
 
     try {
-      const res = await axios.post(global.api("/user/register"), payload)
-      globalActions.login(res.data)
-      console.log(res)
+      const res = await axios.post(global.api("/user/register"), payload, {withCredentials:true})
+      globalActions.login(res.data.user)
+      global.navigate("/")
     } catch (err) {
       console.log(err)
     }
