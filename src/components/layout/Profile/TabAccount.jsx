@@ -39,6 +39,8 @@ const TabAccount = () => {
     name: global.user.name,
     email: global.user.email,
   }
+
+  const [disableSave, setDisableSave] = useState(false)
   const [formData, setFormData] = useState(emptyForm)
 
   function formHandler(e) {
@@ -48,21 +50,29 @@ const TabAccount = () => {
     })
   }
 
+  function imageResetHandler(){
+    setImgSrc(defaultAvatar)
+    setAvatar("")
+  }
+
   async function submitHandler() {
+    setDisableSave(true)
     const form = new FormData()
     form.append("name", formData.name)
     form.append("email", formData.email)
 
-    if(avatar) {
+    if(avatar !== "") {
       form.append("avatar", avatar)
     }
 
     try {
       const res = await axios.put(global.api("/user"), form, {withCredentials:true})
       globalActions.updateUser(res.data.user)
+      localStorage.setItem("email", formData.email)
     } catch (err) {
       console.log(err)
     }
+    setDisableSave(false)
   }
 
   return (
@@ -115,7 +125,7 @@ const TabAccount = () => {
                   style={{ margin: "20px 0px 0px 20px" }}
                   color="error"
                   variant="outlined"
-                  onClick={() => setImgSrc(defaultAvatar)}
+                  onClick={imageResetHandler}
                 >
                   Reset
                 </Button>
@@ -137,6 +147,8 @@ const TabAccount = () => {
             <Button
               variant="contained"
               style={{ background: "#9676F4", marginRight: "20px" }}
+              onClick={submitHandler}
+              disabled={disableSave}
             >
               Save Changes
             </Button>
