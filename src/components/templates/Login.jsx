@@ -12,17 +12,21 @@ import { GoRocket as Rocket } from "react-icons/go";
 import ButtonRegin from "../styles/ButtonRegin.style";
 import FormFieldMain from "../styles/FormFieldMain.style";
 import "../../scss/global.scss";
+// utils
+import useSearchQuery from "../../utils/useSearchQuery";
 
 const Login = () => {
   const [global, globalActions] = useContext(GlobalContext);
+  const { next } = useSearchQuery()
 
+  const [disableLogin, setDisableLogin] = useState(false)
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [remember, setRemember] = useState(false);
 
   useEffect(() => {
     if (global.user.loggedIn) {
-      global.navigate("/")
+      global.navigate(next || "/")
     } else {
       const email = localStorage.getItem("email");
       const password = localStorage.getItem("password");
@@ -35,6 +39,7 @@ const Login = () => {
   }, []);
 
   async function login() {
+    setDisableLogin(true)
     const res = await axios.post(global.api("/user/login"), {
       email,
       password
@@ -49,15 +54,17 @@ const Login = () => {
       localStorage.removeItem("email");
       localStorage.removeItem("password");
     }
-    global.navigate("/");
+    global.navigate(next || "/");
   }
 
   async function submitHandler(e) {
     e.preventDefault();
 
+
     try {
       await login();
     } catch (err) {
+      setDisableLogin(false)
       console.log(err);
     }
   }
@@ -113,7 +120,7 @@ const Login = () => {
                 </Link>
               </Typography>
             </div>
-            <ButtonRegin type="submit" variant="contained">Login</ButtonRegin>
+            <ButtonRegin disabled={disableLogin} type="submit" variant="contained">Login</ButtonRegin>
           </form>
         </main>
         <footer className="text-center" style={{ margin: "10px" }}>

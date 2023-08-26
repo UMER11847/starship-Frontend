@@ -2,6 +2,7 @@ import GlobalActions from "./Actions"
 
 const GlobalReducer = (state, action) => {
     switch (action.type) {
+        // Update User
         case GlobalActions.UPDATE_USER: {
             const user = {
                 loggedIn: true,
@@ -10,6 +11,7 @@ const GlobalReducer = (state, action) => {
             localStorage.setItem("user", JSON.stringify(user))
             return {...state, user }
         }
+        // Reset User
         case GlobalActions.RESET_USER: {
             const user = {
                 loggedIn: false,
@@ -21,6 +23,7 @@ const GlobalReducer = (state, action) => {
                 user
             }
         }
+        // Return state as is
         default:
             return state
     }

@@ -1,5 +1,6 @@
 // Core
-import { useState } from 'react'
+import { useState, useEffect, useCallback, useContext } from 'react'
+import axios from 'axios'
 // Components
 import { Container, Typography, Box, Tab } from "@mui/material";
 import FormCard from "../styles/FormCard";
@@ -7,18 +8,38 @@ import TabAccount from "../layout/Profile/TabAccount";
 import { TabList, TabPanel, TabContext } from '@mui/lab'
 import TabSecurity from '../layout/Profile/TabSecurity';
 import TabAddresses from '../layout/Profile/TabAddresses';
+// Contexts
+import GlobalContext from '../../contexts/Global/Context';
 // Styling
 import { MdAccountCircle, MdLockOpen, MdMap } from 'react-icons/md'
 import "../../scss/global.scss"
 
 
 const Profile = () => {
-  // ** State
+  // UI Related
   const [value, setValue] = useState('account')
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
+  // UI Related
+
+  const [global, globalActions] = useContext(GlobalContext)
+  const [addresses, setAddresses] = useState([])
+
+  const getAddressesFromApi = useCallback(async function() {
+    try {
+      const res = await axios.get(global.api("/user/addresses"), {withCredentials: true})
+      setAddresses(res.data.addresses)
+    } catch (err) {
+      console.log(err)
+    }
+  }, [])
+
+  useEffect(() => {
+    getAddressesFromApi()
+    if (!global.user.loggedIn) global.navigate("/login?next=/profile")
+  }, [])
 
   return (
     <Container>
@@ -66,7 +87,7 @@ const Profile = () => {
             <TabSecurity/>
           </TabPanel>
           <TabPanel sx={{ p: 0 }} value='addresses'>
-            <TabAddresses/>
+            <TabAddresses addresses={addresses} setAddresses={setAddresses} />
           </TabPanel>
         </TabContext>
 

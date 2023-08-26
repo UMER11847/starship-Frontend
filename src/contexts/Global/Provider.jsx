@@ -30,7 +30,6 @@ const GlobalProvider = ({ children }) => {
   const updateUser = dispatcher(GlobalActions.UPDATE_USER);
   const resetUser = dispatcher(GlobalActions.RESET_USER);
 
-  console.log(global)
   return (
     <GlobalContext.Provider value={[global, { updateUser, resetUser }]}>
       {children}

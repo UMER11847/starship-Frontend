@@ -15,6 +15,8 @@ import "../../scss/global.scss";
 
 const Register = () => {
   const [global, globalActions] = useContext(GlobalContext)
+
+  const [disableRegister, setDisableRegister] = useState(false)
   const [policyAgreed, setPolicyAgreed] = useState(false);
 
   useEffect(() => {
@@ -33,10 +35,12 @@ const Register = () => {
     }
 
     try {
+      setDisableRegister(true)
       const res = await axios.post(global.api("/user/register"), payload, {withCredentials:true})
       globalActions.updateUser(res.data.user)
       global.navigate("/")
     } catch (err) {
+      setDisableRegister(false)
       console.log(err)
     }
 
@@ -86,7 +90,7 @@ const Register = () => {
               }
               label="I agree to privacy policy & terms"
             />
-            <ButtonRegin type="submit" variant="contained" disabled={!policyAgreed}>Sign Up</ButtonRegin>
+            <ButtonRegin type="submit" variant="contained" disabled={!policyAgreed || disableRegister}>Sign Up</ButtonRegin>
           </form>
         </main>
         <footer className="text-center" style={{ margin: "10px" }}>
