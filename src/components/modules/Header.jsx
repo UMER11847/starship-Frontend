@@ -4,9 +4,7 @@ import { Link as RouterLink } from "react-router-dom";
 // Styling
 import { Link } from "@mui/material";
 import { CgShoppingCart } from "react-icons/cg";
-import { AiOutlineHeart } from "react-icons/ai";
 import { TbSearch } from "react-icons/tb";
-import { CgProfile } from "react-icons/cg"
 import "./scss/Header.scss";
 //Cart
 import Cart from "./Cart";
@@ -45,7 +43,7 @@ const Header = () => {
         </ul>
         <div className="center">
           <Link to="/" component={RouterLink} underline="none" color="inherit">
-            TECH STORE
+            STARSHIP
           </Link>
         </div>
         <div className="right">

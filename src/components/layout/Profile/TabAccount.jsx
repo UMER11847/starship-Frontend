@@ -1,5 +1,5 @@
 // Core
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 // Components
 import {
@@ -21,7 +21,7 @@ const TabAccount = () => {
   const [avatar, setAvatar] = useState("")
   
   // UI Related
-  const [imgSrc, setImgSrc] = useState(global.user.avatar.url);
+  const [imgSrc, setImgSrc] = useState(global.user.avatar && global.user.avatar.url);
 
   const onChange = (file) => {
     const reader = new FileReader();
@@ -42,6 +42,7 @@ const TabAccount = () => {
 
   const [disableSave, setDisableSave] = useState(false)
   const [formData, setFormData] = useState(emptyForm)
+
 
   function formHandler(e) {
     setFormData({
