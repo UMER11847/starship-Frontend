@@ -15,6 +15,8 @@ import ForgotPassword from "./components/templates/ForgotPassword"
 import Profile from "./components/templates/Profile"
 import About from "./components/modules/About"
 import Admin from "./components/templates/Admin"
+import MyOrder from "./components/modules/MyOrder"
+import Carousel from "./components/modules/Carousel"
 
 const App = () => {
   return (
@@ -24,6 +26,7 @@ const App = () => {
         <Route path="product/:id" element={<SingleProduct/>}/>
         <Route path="profile" element={<Profile/>} />
         <Route path="admin" element={<Admin/>} />
+        <Route path="/myorder" element={<MyOrder/>} />
       </Route>
       <Route path="/password/reset" element={<BlankMain/>}>
         <Route index element={<ForgotPassword/>}/>
@@ -33,6 +36,9 @@ const App = () => {
       <Route path="/register" element={<Register/>} />
       <Route path="*" element={<Error404/>} />
       <Route path="/about" element={<About/>} />
+      <Route path="/slider" element={<Carousel/>} />
+     
+      
     </Routes>
   )
 }
