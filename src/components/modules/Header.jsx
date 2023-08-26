@@ -36,10 +36,20 @@ const Header = () => {
       <div className="header-content">
         <ul className="left">
           <li>
-           Home
+            <Link to="/" component={RouterLink} underline="none" color="inherit" >
+              Home
+            </Link>
           </li>
-          <li>About</li>
-          <li>Categories</li>
+          <li>
+            <Link to="/about" component={RouterLink} underline="none" color="inherit" >
+              About
+            </Link>
+          </li>
+          <li>
+            <Link to="/orders" component={RouterLink} underline="none" color="inherit" >
+              Orders
+            </Link>
+          </li>
         </ul>
         <div className="center">
           <Link to="/" component={RouterLink} underline="none" color="inherit">

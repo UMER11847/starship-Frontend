@@ -23,10 +23,10 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Main/>} >
         <Route index element={<Home/>} />
-        <Route path="product/:id" element={<SingleProduct/>}/>
+        <Route path="product/:id" element={<SingleProduct/>} />
         <Route path="profile" element={<Profile/>} />
         <Route path="admin" element={<Admin/>} />
-        <Route path="/myorder" element={<MyOrder/>} />
+        <Route path="/orders" element={<MyOrder/>} />
       </Route>
       <Route path="/password/reset" element={<BlankMain/>}>
         <Route index element={<ForgotPassword/>}/>

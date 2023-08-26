@@ -23,6 +23,15 @@ const GlobalReducer = (state, action) => {
                 user
             }
         }
+        case GlobalActions.SHOW_CART: {
+            return {
+                ...state,
+                store: {
+                    ...state.store,
+                    showCart: action.payload
+                }
+            }
+        }
         // Return state as is
         default:
             return state

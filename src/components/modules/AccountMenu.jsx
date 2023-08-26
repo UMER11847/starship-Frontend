@@ -1,4 +1,7 @@
-import { useState } from "react";
+// Core
+import { useContext, useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+// Components
 import {
   Box,
   Avatar,
@@ -8,11 +11,15 @@ import {
   Divider,
   IconButton,
   Tooltip,
+  Link
 } from "@mui/material";
 // Styling
 import Logout from "@mui/icons-material/Logout";
+import GlobalContext from "../../contexts/Global/Context";
+import axios from "axios";
 
 export default function AccountMenu() {
+  // UI Related
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -21,11 +28,23 @@ export default function AccountMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  // UI Related
+
+  const [global, globalActions] = useContext(GlobalContext)
+
+  async function logoutHandler() {
+    try {
+      await axios.get(global.api("/user/logout"), {withCredentials:true})
+      globalActions.resetUser()
+      global.navigate("/login")
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center", textAlign: "center" }}>
-        {/* <Typography sx={{ minWidth: 100 }}>Contact</Typography>
-        <Typography sx={{ minWidth: 100 }}>Profile</Typography> */}
         <Tooltip title="Account settings">
           <IconButton
             onClick={handleClick}
@@ -75,23 +94,17 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar /> Profile
+          <Link to="/profile" component={RouterLink} underline="none" color="inherit" >
+            Profile
+          </Link>
         </MenuItem>
-        <MenuItem onClick={handleClose}>My Orders</MenuItem>
+        <MenuItem onClick={handleClose}>
+          <Link to="/orders" component={RouterLink} underline="none" color="inherit" >
+            Orders
+          </Link>
+        </MenuItem>
         <Divider />
-        {/* <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <PersonAdd fontSize="small" />
-          </ListItemIcon>
-          Add another account
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <Settings fontSize="small" />
-          </ListItemIcon>
-          Settings
-        </MenuItem> */}
-        <MenuItem onClick={handleClose}>
+        <MenuItem onClick={logoutHandler} >
           <ListItemIcon>
             <Logout fontSize="small" />
           </ListItemIcon>

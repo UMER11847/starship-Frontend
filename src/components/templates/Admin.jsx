@@ -1,5 +1,5 @@
 // Core
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 // Components
 import { Container, Typography, Box, Tab } from "@mui/material";
 import FormCard from "../styles/FormCard";
@@ -18,6 +18,10 @@ const Admin = () => {
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  })
 
   return (
     <Container>
