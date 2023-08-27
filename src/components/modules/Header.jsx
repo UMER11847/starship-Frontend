@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 // Styling
-import { Link } from "@mui/material";
+import { Box, Link } from "@mui/material";
 import { CgShoppingCart } from "react-icons/cg";
 import { TbSearch } from "react-icons/tb";
 import "./scss/Header.scss";
@@ -13,26 +13,13 @@ import Search from "./Search";
 import AccountMenu from "./AccountMenu";
 
 const Header = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [ShowCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
-  const ScrollHandler = () => {
-    const offSet = window.scrollY;
-    if (offSet > 200) {
-      setScrolled(true);
-    } else {
-      setScrolled(false);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", ScrollHandler);
-  }, [scrolled]);
 
   return (
     <>
-    <header className={`main-header ${scrolled ? "sticky-header" : ""}`}>
+    <header className={`main-header sticky-header`}>
       <div className="header-content">
         <ul className="left">
           <li>
@@ -56,7 +43,7 @@ const Header = () => {
             STARSHIP
           </Link>
         </div>
-        <div className="right">
+        <Box className="right">
           <TbSearch onClick={()=> setShowSearch(true) } />
           <span className="cart-icon" onClick={()=> setShowCart(true) }>
             <CgShoppingCart />
@@ -65,7 +52,7 @@ const Header = () => {
           <span className="profile">
           <AccountMenu/>
           </span>
-        </div>
+        </Box>
       </div>
     </header>
     {ShowCart && <Cart setShowCart={setShowCart} />}

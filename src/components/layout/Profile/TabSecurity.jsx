@@ -78,7 +78,13 @@ const TabSecurity = () => {
           <Grid item xs={12}>
             <Button
               variant="contained"
-              sx={{ background: "#9676F4", marginRight: "20px" }}
+              sx={{
+                background: "#9676F4",
+                marginRight: "20px",
+                "&:hover": {
+                  background: "#9676F4",
+                }
+              }}
               onClick={submitHandler}
               disabled={disableSubmut}
             >
