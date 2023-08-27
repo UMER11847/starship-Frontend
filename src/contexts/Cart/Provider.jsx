@@ -28,7 +28,7 @@ const CartProvider = ({ children }) => {
   };
 
   const add = dispatcher(CartActions.ADD_TO_CART)
-  const remove = dispatcher(CartActions.ADD_TO_CART)
+  const remove = dispatcher(CartActions.REMOVE_FROM_CART)
   const reset = dispatcher(CartActions.RESET_CART)
 
   return (

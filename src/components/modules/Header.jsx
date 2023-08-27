@@ -14,57 +14,77 @@ import AccountMenu from "./AccountMenu";
 import CartContext from "../../contexts/Cart/Context";
 
 const Header = () => {
-  const [cart, cartActions] = useContext(CartContext)
+  const [cart, cartActions] = useContext(CartContext);
 
   const [ShowCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
-  const [cartAmount, setCartAmount] = useState(0)
+  const [cartAmount, setCartAmount] = useState(0);
 
   useEffect(() => {
-    setCartAmount(Object.keys(cart).length)
-  }, [cart])
+    setCartAmount(Object.keys(cart).length);
+  }, [cart]);
 
   return (
     <>
-    <header className={`main-header sticky-header`}>
-      <div className="header-content">
-        <ul className="left">
-          <li>
-            <Link to="/" component={RouterLink} underline="none" color="inherit" >
-              Home
+      <header className={`main-header sticky-header`}>
+        <div className="header-content">
+          <ul className="left">
+            <li>
+              <Link
+                to="/"
+                component={RouterLink}
+                underline="none"
+                color="inherit"
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/about"
+                component={RouterLink}
+                underline="none"
+                color="inherit"
+              >
+                About
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/orders"
+                component={RouterLink}
+                underline="none"
+                color="inherit"
+              >
+                Orders
+              </Link>
+            </li>
+          </ul>
+          <div className="center">
+            <Link
+              to="/"
+              component={RouterLink}
+              underline="none"
+              color="inherit"
+            >
+              STARSHIP
             </Link>
-          </li>
-          <li>
-            <Link to="/about" component={RouterLink} underline="none" color="inherit" >
-              About
-            </Link>
-          </li>
-          <li>
-            <Link to="/orders" component={RouterLink} underline="none" color="inherit" >
-              Orders
-            </Link>
-          </li>
-        </ul>
-        <div className="center">
-          <Link to="/" component={RouterLink} underline="none" color="inherit">
-            STARSHIP
-          </Link>
+          </div>
+          <Box className="right">
+            <TbSearch onClick={() => setShowSearch(true)} />
+            <span className="cart-icon" onClick={() => setShowCart(true)}>
+              <CgShoppingCart />
+              {cartAmount ? <span>{cartAmount}</span> : ""}
+            </span>
+            <span className="profile">
+              <AccountMenu />
+            </span>
+          </Box>
         </div>
-        <Box className="right">
-          <TbSearch onClick={()=> setShowSearch(true) } />
-          <span className="cart-icon" onClick={()=> setShowCart(true) }>
-            <CgShoppingCart />
-            {cartAmount ? <span>{cartAmount}</span> : "" }
-          </span>
-          <span className="profile">
-          <AccountMenu/>
-          </span>
-        </Box>
-      </div>
-    </header>
-    {ShowCart && <Cart setShowCart={setShowCart} />}
-    {showSearch && <Search setShowSearch={setShowSearch} />}
+      </header>
+      {ShowCart && <Cart setShowCart={setShowCart} />}
+      {showSearch && <Search setShowSearch={setShowSearch} />}
     </>
   );
 };
