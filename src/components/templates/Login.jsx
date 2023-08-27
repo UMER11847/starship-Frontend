@@ -5,6 +5,7 @@ import axios from "axios";
 import GlobalContext from "../../contexts/Global/Context";
 // Components
 import { Checkbox, Typography, FormControlLabel, Link } from "@mui/material";
+import { ToastContainer, toast } from 'react-toastify';
 import BlankPage from "../layout/BlankPage";
 import FormCard from "../styles/FormCard";
 // Styling
@@ -12,6 +13,7 @@ import { GoRocket as Rocket } from "react-icons/go";
 import ButtonRegin from "../styles/ButtonRegin.style";
 import FormFieldMain from "../styles/FormFieldMain.style";
 import "../../scss/global.scss";
+import 'react-toastify/dist/ReactToastify.css';
 // utils
 import useSearchQuery from "../../utils/useSearchQuery";
 
@@ -66,6 +68,16 @@ const Login = () => {
     } catch (err) {
       setDisableLogin(false)
       console.log(err);
+      toast.error('Incorrect credential', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
     }
   }
 
@@ -121,6 +133,7 @@ const Login = () => {
               </Typography>
             </div>
             <ButtonRegin disabled={disableLogin} type="submit" variant="contained">Login</ButtonRegin>
+            <ToastContainer />
           </form>
         </main>
         <footer className="text-center" style={{ margin: "10px" }}>
