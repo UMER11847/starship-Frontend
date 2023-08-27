@@ -73,15 +73,16 @@ export default function AccountMenu() {
         transformOrigin={{ horizontal: "right", vertical: "top" }}
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
-        <MenuItem onClick={handleClose}>
-          <Link to="/profile" component={RouterLink} underline="none" color="inherit" >
+        <MenuItem onClick={() => {global.navigate("/profile"); handleClose()}} >
             Profile
-          </Link>
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Link to="/orders" component={RouterLink} underline="none" color="inherit" >
+        {global.user.role === "admin" && (
+        <MenuItem onClick={() => {global.navigate("/admin"); handleClose()}} >
+            Admin
+        </MenuItem>
+        )}
+        <MenuItem onClick={() => {global.navigate("/orders"); handleClose()}} >
             Orders
-          </Link>
         </MenuItem>
         <Divider />
         <MenuItem onClick={logoutHandler} >
