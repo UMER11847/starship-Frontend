@@ -332,6 +332,7 @@ const TabProducts = () => {
                   <Button
                     variant="contained"
                     style={{ background: "#9676F4", marginRight: "10px" }}
+                    onClick={() => global.navigate("/product/" + item._id)}
                   >
                     View
                   </Button>

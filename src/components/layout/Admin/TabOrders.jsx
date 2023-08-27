@@ -39,7 +39,7 @@ const TabOrders = () => {
       <form onSubmit={submitHandler}>
         <Grid container spacing={4}>
           <Grid item xs={12} sm={6}>
-            <TextField name="id" fullWidth label="Id" />
+            <TextField required name="id" fullWidth label="Order Id" />
           </Grid>
           <Grid item xs={12} sm={6}>
             <FormControl fullWidth>

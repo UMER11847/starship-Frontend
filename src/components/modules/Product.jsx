@@ -8,19 +8,19 @@ import GlobalContext from "../../contexts/Global/Context";
 // import product from "../../assets/Product/earbuds.jpeg";
 import Stars from "./Star";
 
-const Product = ({ pic }) => {
+const Product = ({ item }) => {
   const [global, globalActions] = useContext(GlobalContext)
 
   return (
     <div className="product-card">
       <div className="thumbnail">
-        <img onClick={() => global.navigate("/product/1")} src={pic} alt="img" />
+        <img onClick={() => global.navigate("/product/" + item._id)} src={item.images[0].url} alt={item.name} />
       </div>
       <div className="prod-detail">
-        <span className="name">product name </span>
+        <span className="name">{item.name}</span>
         <br />
         <Stars />
-        <span className="price">855$</span>
+        <span className="price">{item.price}$</span>
       </div>
     </div>
   );

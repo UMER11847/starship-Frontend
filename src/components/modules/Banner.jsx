@@ -10,7 +10,7 @@ const Banner = () => {
   return (
     <div className="hero-banner">
       <div className="content">
-        <div className="text-content">
+        <div style={{zIndex: 2}} className="text-content">
           <h1>TECH</h1>
           <p>
             Discover a realm of cutting-edge possibilities at our tech store,
@@ -35,7 +35,7 @@ const Banner = () => {
             </div>
           </div>
         </div>
-        <img className="banner-img" src={BannerImg} alt="img" />
+        <img style={{zIndex: 1}} className="banner-img" src={BannerImg} alt="img" />
       </div>
     </div>
   );

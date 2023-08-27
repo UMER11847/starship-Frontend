@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 // import { CardContent } from "@mui/material";
 
-// Do them like this
 import {
   Box,
   Collapse,

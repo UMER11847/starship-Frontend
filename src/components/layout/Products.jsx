@@ -1,36 +1,34 @@
+import { useEffect, useState } from "react";
 // Components
 import Product from "../modules/Product";
 // Styling
 import { Divider, Box, Pagination } from "@mui/material";
 import "./scss/Products.scss";
 
-import img1 from "../../assets/Category/Earbuds.jpg"
-import img2 from "../../assets/Category/Headphones.jpg"
-import img3 from "../../assets/Category/Laptop.jpg"
-import img4 from "../../assets/Category/SmartWatch.jpg"
-import img5 from "../../assets/Category/Speaker.jpg"
-import img6 from "../../assets/Product/earbuds.jpeg"
-import img7 from "../../assets/Product/laptop.png"
-import img8 from "../../assets/Product/laptop2.jpg"
+const Products = ({ products, HeadingTxt}) => {
+  const [showItems, setShowItems] = useState([])
+  const [pageCount, setPageCount] = useState(1)
+  const [page, setPage] = useState(1)
 
-const Products = ({HeadingTxt}) => {
+  useEffect(() => {
+    try {
+      setShowItems(products.slice((page * 4) - 4, page * 4))
+      setPageCount(Math.ceil(products.length / 4))
+    } catch (err) {null}
+  }, [products, page])
+
   return (
     <div className="products-container">
         <div className="sec-heading"><a id="style-2" data-replace={HeadingTxt}><span>{HeadingTxt}</span></a></div>
         <div className="products">
-          <Product pic={img1} />
-          <Product pic={img2} />
-          <Product pic={img3} />
-          <Product pic={img4} />
-          <Product pic={img5} />
-          <Product pic={img6} />
-          <Product pic={img7} />
-          <Product pic={img8} />
+          {showItems.map((item) => {
+            return <Product key={item._id} item={item} />
+          })}
 
         </div>
         <Divider style={{margin: "20px"}} />
         <Box display="flex" justifyContent="center">
-          <Pagination count={10} />
+          <Pagination page={page} onChange={(e, v) => setPage(v)} count={pageCount} />
         </Box>
     </div>
   )

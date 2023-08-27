@@ -4,7 +4,7 @@ import BlankPage from "../layout/BlankPage"
 // Styling
 import { GoAlert } from "react-icons/go"
 
-const error404 = () => {
+const Error404 = () => {
   return (
     <BlankPage>
       <div style={{ height: "100vh", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
@@ -21,4 +21,4 @@ const error404 = () => {
   )
 }
 
-export default error404
+export default Error404

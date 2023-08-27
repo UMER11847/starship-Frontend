@@ -1,5 +1,5 @@
 // Core
-import { useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 // Components
 import { Container, Typography, Box, Tab } from "@mui/material";
 import FormCard from "../styles/FormCard";
@@ -9,6 +9,7 @@ import TabProducts from '../layout/Admin/TabProducts';
 // Styling
 import { GoPackage } from 'react-icons/go'
 import { BsCart2 } from 'react-icons/bs';
+import GlobalContext from '../../contexts/Global/Context';
 
 
 const Admin = () => {
@@ -19,6 +20,13 @@ const Admin = () => {
     setValue(newValue)
   }
   // UI Related
+  const [global, globalActions] = useContext(GlobalContext)
+
+  useEffect(() => {
+    if (global.user.role !== "admin") {
+      global.navigate("/404")
+    }
+  }, [])
 
   return (
     <Container>

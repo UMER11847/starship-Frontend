@@ -35,7 +35,6 @@ const App = () => {
         console.log(err)
       }
     })()
-    storeActions.setProducts()
   }, [])
 
   return (
@@ -46,6 +45,7 @@ const App = () => {
         <Route path="profile" element={<Profile/>} />
         <Route path="admin" element={<Admin/>} />
         <Route path="/orders" element={<MyOrder/>} />
+        <Route path="/about" element={<About/>} />
       </Route>
       <Route path="/password/reset" element={<BlankMain/>}>
         <Route index element={<ForgotPassword/>}/>
@@ -53,6 +53,7 @@ const App = () => {
       </Route>
       <Route path="/login" element={<Login/>} />
       <Route path="/register" element={<Register/>} />
+      <Route path="/404" element={<Error404/>} />
       <Route path="*" element={<Error404/>} />
       <Route path="/about" element={<About/>} />
 
