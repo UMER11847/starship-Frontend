@@ -29,7 +29,7 @@ const Products = ({HeadingTxt}) => {
 
         </div>
         <Divider style={{margin: "20px"}} />
-        <Box item display="flex" justifyContent="center">
+        <Box display="flex" justifyContent="center">
           <Pagination count={10} />
         </Box>
     </div>

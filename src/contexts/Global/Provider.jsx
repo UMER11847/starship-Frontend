@@ -15,9 +15,6 @@ const GlobalProvider = ({ children }) => {
     cookies: getCookies(),
     api: (path) => getBackendURL(path),
     navigate: useNavigate(),
-    store: {
-      showCart: false
-    }
   };
 
   const [global, dispatch] = useReducer(GlobalReducer, initialState);
@@ -32,10 +29,9 @@ const GlobalProvider = ({ children }) => {
 
   const updateUser = dispatcher(GlobalActions.UPDATE_USER);
   const resetUser = dispatcher(GlobalActions.RESET_USER);
-  const showCart = dispatcher(GlobalActions.SHOW_CART)
 
   return (
-    <GlobalContext.Provider value={[global, { updateUser, resetUser, showCart }]}>
+    <GlobalContext.Provider value={[global, { updateUser, resetUser }]}>
       {children}
     </GlobalContext.Provider>
   );

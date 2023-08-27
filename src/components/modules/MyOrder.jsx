@@ -1,20 +1,41 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Typography from '@mui/material/Typography';
-import Paper from '@mui/material/Paper';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import BlankPage from "../layout/BlankPage"
-import { CardContent } from '@mui/material';
+import * as React from "react";
+import PropTypes from "prop-types";
+
+import { CardContent } from "@mui/material";
+
+// Do them like this
+import {
+  Box,
+  Collapse,
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Typography,
+  Paper,
+} from "@mui/material";
+import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
+
+// Dont do imports like this  //
+//
+// import Box from '@mui/material/Box';
+// import Collapse from '@mui/material/Collapse';
+// import IconButton from '@mui/material/IconButton';
+// import Table from '@mui/material/Table';
+// import TableBody from '@mui/material/TableBody';
+// import TableCell from '@mui/material/TableCell';
+// import TableContainer from '@mui/material/TableContainer';
+// import TableHead from '@mui/material/TableHead';
+// import TableRow from '@mui/material/TableRow';
+// import Typography from '@mui/material/Typography';
+// import Paper from '@mui/material/Paper';
+// import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+// import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+
+import BlankPage from "../layout/BlankPage";
 
 function createData(name, color, qt, price) {
   return {
@@ -24,13 +45,13 @@ function createData(name, color, qt, price) {
     price,
     history: [
       {
-        date: '2020-01-05',
-        customerId: 'FS1054',
+        date: "2020-01-05",
+        customerId: "FS1054",
         amount: 3,
       },
       {
-        date: '2020-01-02',
-        customerId: 'GK0017',
+        date: "2020-01-02",
+        customerId: "GK0017",
         amount: 1,
       },
     ],
@@ -43,14 +64,18 @@ function Row(props) {
 
   return (
     <React.Fragment>
-      <TableRow sx={{ '& > *': { borderBottom: 'unset'} }}>
+      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
         <TableCell>
           <IconButton
             aria-label="expand row"
             size="small"
             onClick={() => setOpen(!open)}
           >
-            {open ? <KeyboardArrowUpIcon sx={{color:"#8E2DE2"}} /> : <KeyboardArrowDownIcon sx={{color:"#8E2DE2"}} />}
+            {open ? (
+              <KeyboardArrowUp sx={{ color: "#8E2DE2" }} />
+            ) : (
+              <KeyboardArrowDown sx={{ color: "#8E2DE2" }} />
+            )}
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
@@ -110,7 +135,7 @@ Row.propTypes = {
         amount: PropTypes.number.isRequired,
         customerId: PropTypes.string.isRequired,
         date: PropTypes.string.isRequired,
-      }),
+      })
     ).isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
@@ -119,73 +144,80 @@ Row.propTypes = {
 };
 
 const rows = [
-  createData('Headphones', "black", 2),
-  createData('Laptop', "red", 3),
+  createData("Headphones", "black", 2),
+  createData("Laptop", "red", 3),
   // createData('Eclair', 262, 16.0, 24, 6.0, 3.79),
   // createData('Cupcake', 305, 3.7, 67, 4.3, 2.5),
   // createData('Gingerbread', 356, 16.0, 49, 3.9, 1.5),
 ];
-//CSS 
+//CSS
 const centerTableStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  minHeight: '100vh', 
-  marginBottom:'30%'
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  minHeight: "100vh",
+  marginBottom: "30%",
 };
 const tableStyle = {
   maxWidth: 800,
-  width: '100vh',
+  width: "100vh",
   borderRadius: 10,
-  boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.8)',
-  padding:'80px'
+  boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.8)",
+  padding: "80px",
 };
 
 const headerCellStyle = {
-  fontWeight: 'bold',
+  fontWeight: "bold",
 };
 
-const tableContainer ={
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  textAlign: 'center'
-}
+const tableContainer = {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  textAlign: "center",
+};
 
 export default function MyOrder() {
-
-  React.useEffect(() => {
-    window.scrollTo(0, 0)
-  })
 
   return (
     <BlankPage>
       <CardContent>
-    <div className="center-table-style" style={centerTableStyle}>
-      <div className="table-container" style={tableContainer}>
-     <Typography  variant="h3" gutterBottom color={'#8E2DE2'}>My Order </Typography>
-    <TableContainer className='table-style' component={Paper} style={tableStyle}> 
-      <Table aria-label="collapsible table">
-        <TableHead>
-          <TableRow>
-            <TableCell />
-            <TableCell className='header-cell-style' style={headerCellStyle}>Products</TableCell>
-            <TableCell align="right">color</TableCell>
-            <TableCell align="right">qt</TableCell>
-            {/* <TableCell align="right">Carbs&nbsp;(g)</TableCell>
+        <div className="center-table-style" style={centerTableStyle}>
+          <div className="table-container" style={tableContainer}>
+            <Typography variant="h3" gutterBottom color={"#8E2DE2"}>
+              My Order{" "}
+            </Typography>
+            <TableContainer
+              className="table-style"
+              component={Paper}
+              style={tableStyle}
+            >
+              <Table aria-label="collapsible table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell />
+                    <TableCell
+                      className="header-cell-style"
+                      style={headerCellStyle}
+                    >
+                      Products
+                    </TableCell>
+                    <TableCell align="right">color</TableCell>
+                    <TableCell align="right">qt</TableCell>
+                    {/* <TableCell align="right">Carbs&nbsp;(g)</TableCell>
             <TableCell align="right">Protein&nbsp;(g)</TableCell> */}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <Row key={row.name} row={row} />
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
-    </div>
-    </div>
-    </CardContent>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.map((row) => (
+                    <Row key={row.name} row={row} />
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+        </div>
+      </CardContent>
     </BlankPage>
   );
 }

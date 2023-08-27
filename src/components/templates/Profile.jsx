@@ -37,7 +37,6 @@ const Profile = () => {
   }, [])
 
   useEffect(() => {
-    window.scrollTo(0, 0)
     getAddressesFromApi()
     if (!global.user.loggedIn) global.navigate("/login?next=/profile")
   }, [])

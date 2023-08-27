@@ -1,6 +1,6 @@
 import GlobalActions from "./Actions"
 
-const GlobalReducer = (state, action) => {
+const GlobalReducer = (global, action) => {
     switch (action.type) {
         // Update User
         case GlobalActions.UPDATE_USER: {
@@ -9,7 +9,7 @@ const GlobalReducer = (state, action) => {
                 ...action.payload
             }
             localStorage.setItem("user", JSON.stringify(user))
-            return {...state, user }
+            return {...global, user }
         }
         // Reset User
         case GlobalActions.RESET_USER: {
@@ -19,22 +19,13 @@ const GlobalReducer = (state, action) => {
             }
             localStorage.setItem("user", JSON.stringify(user))
             return {
-                ...state,
+                ...global,
                 user
-            }
-        }
-        case GlobalActions.SHOW_CART: {
-            return {
-                ...state,
-                store: {
-                    ...state.store,
-                    showCart: action.payload
-                }
             }
         }
         // Return state as is
         default:
-            return state
+            return global
     }
     
 }

@@ -1,10 +1,12 @@
-import * as React from "react";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Divider from "@mui/material/Divider";
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+  Divider,
+} from "@mui/material";
+import { ExpandMore } from "@mui/icons-material";
+
 import SpanningTable from "./Table";
 import "./Demo.css";
 
@@ -13,7 +15,7 @@ export default function BasicAccordion() {
     <div>
       <Accordion>
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMore />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
@@ -22,7 +24,7 @@ export default function BasicAccordion() {
         <AccordionDetails>
           <Typography>Placed on 7 jun 23</Typography>
           <Divider variant="middle" />
-      
+
           <Typography>
             Address,
             <br />
@@ -34,19 +36,19 @@ export default function BasicAccordion() {
           <Divider variant="middle" />
 
           <SpanningTable />
-          <Typography>Order Status:
+          <Typography>
+            Order Status:
             <br />
             Payment Confirmed
             <br />
-            Note: this is our store we can delivered item whenever we want 
+            Note: this is our store we can delivered item whenever we want
             lolllllllll
           </Typography>
-
         </AccordionDetails>
       </Accordion>
       <Accordion>
         <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
+          expandIcon={<ExpandMore />}
           aria-controls="panel2a-content"
           id="panel2a-header"
         >
@@ -59,7 +61,6 @@ export default function BasicAccordion() {
           </Typography>
         </AccordionDetails>
       </Accordion>
-
     </div>
   );
 }

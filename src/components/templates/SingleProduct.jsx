@@ -10,14 +10,10 @@ import {
 import RelatedProduct from "../modules/RelatedProduct";
 import "./scss/SingleProduct.scss";
 import Star from "../modules/Star";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const SingleProduct = () => {
   const [amount, setAmount] = useState(1)
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  })
 
   return (
     <div className="single-product-main-content">

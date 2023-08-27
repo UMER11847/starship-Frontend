@@ -1,5 +1,5 @@
 // Core
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 // Components
 import { Container, Typography, Box, Tab } from "@mui/material";
 import FormCard from "../styles/FormCard";
@@ -12,16 +12,13 @@ import { BsCart2 } from 'react-icons/bs';
 
 
 const Admin = () => {
-  // ** State
+  // UI Related
   const [value, setValue] = useState('products')
 
   const handleChange = (event, newValue) => {
     setValue(newValue)
   }
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  })
+  // UI Related
 
   return (
     <Container>

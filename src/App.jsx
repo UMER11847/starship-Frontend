@@ -1,5 +1,7 @@
 // Core
 import { Routes, Route } from "react-router-dom"
+import { useContext, useEffect } from "react"
+import axios from "axios"
 // Components
 import Main from "./components/layout/Main"
 import Home from "./components/templates/Home"
@@ -7,6 +9,9 @@ import Register from "./components/templates/Register"
 import Error404 from "./components/templates/Error404"
 import BlankMain from "./components/layout/BlankMain"
 import ResetPassword from "./components/templates/ResetPassword"
+// Contexts
+import StoreContext from "./contexts/Store/Context"
+import GlobalContext from "./contexts/Global/Context"
 // Styling
 import './scss/App.scss'
 import Login from "./components/templates/Login"
@@ -19,6 +24,21 @@ import MyOrder from "./components/modules/MyOrder"
 import Carousel from "./components/modules/Carousel"
 
 const App = () => {
+  const [store, storeActions] = useContext(StoreContext)
+  const [global, globalActions] = useContext(GlobalContext)
+
+  useEffect(() => {
+    (async function() {
+      try {
+        const res = await axios.get(global.api("/products"))
+        storeActions.setProducts(res.data.products)
+      } catch (err) {
+        console.log(err)
+      }
+    })()
+    storeActions.setProducts()
+  }, [])
+
   return (
     <Routes>
       <Route path="/" element={<Main/>} >
