@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 // Contexts
 import GlobalProvider from './contexts/Global/Provider.jsx'
 import StoreProvider from './contexts/Store/Provider.jsx'
+import CartProvider from './contexts/Cart/Provider.jsx'
 // Components
 import App from './App.jsx'
 // Styling
@@ -18,7 +19,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <ScrollToTop/>
       <GlobalProvider>
         <StoreProvider>
-          <App />
+          <CartProvider>
+            <App />
+          </CartProvider>
         </StoreProvider>
       </GlobalProvider>
     </BrowserRouter>

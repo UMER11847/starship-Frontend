@@ -1,5 +1,5 @@
 // Core
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 // Styling
 import { Box, Link } from "@mui/material";
@@ -11,11 +11,19 @@ import Cart from "./Cart";
 //search
 import Search from "./Search";
 import AccountMenu from "./AccountMenu";
+import CartContext from "../../contexts/Cart/Context";
 
 const Header = () => {
+  const [cart, cartActions] = useContext(CartContext)
+
   const [ShowCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
+  const [cartAmount, setCartAmount] = useState(0)
+
+  useEffect(() => {
+    setCartAmount(Object.keys(cart).length)
+  }, [cart])
 
   return (
     <>
@@ -47,7 +55,7 @@ const Header = () => {
           <TbSearch onClick={()=> setShowSearch(true) } />
           <span className="cart-icon" onClick={()=> setShowCart(true) }>
             <CgShoppingCart />
-            <span>6</span>
+            {cartAmount ? <span>{cartAmount}</span> : "" }
           </span>
           <span className="profile">
           <AccountMenu/>

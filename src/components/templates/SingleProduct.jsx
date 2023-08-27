@@ -14,10 +14,12 @@ import GlobalContext from "../../contexts/Global/Context";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import StoreContext from "../../contexts/Store/Context";
+import CartContext from "../../contexts/Cart/Context";
 
 const SingleProduct = () => {
   const [global, globalActions] = useContext(GlobalContext);
   const [store, storeActions] = useContext(StoreContext);
+  const [cart, cartActions] = useContext(CartContext);
   const { id } = useParams();
 
   const [product, setProduct] = useState({ images: [{}] });
@@ -38,9 +40,20 @@ const SingleProduct = () => {
   useEffect(() => {
     if (product.category)
       setRelatedProducts(
-        store.products.filter((item) => (item.category === product.category && item._id !== product._id))
+        store.products.filter(
+          (item) =>
+            item.category === product.category && item._id !== product._id
+        )
       );
   }, [store.products, product]);
+
+  useEffect(() => {
+    if (amount < 1) setAmount(1);
+  }, [amount]);
+
+  function addHandler() {
+    cartActions.add({ name: product.name, item: { ...product, amount } });
+  }
 
   return (
     <div className="single-product-main-content">
@@ -64,7 +77,7 @@ const SingleProduct = () => {
                 <span>{amount}</span>
                 <span onClick={() => setAmount(amount + 1)}>+</span>
               </div>
-              <button className="add-to-cart-button">
+              <button onClick={addHandler} className="add-to-cart-button">
                 <FaCartPlus size={20} />
                 ADD TO CART
               </button>
