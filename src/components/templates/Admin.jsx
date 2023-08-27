@@ -24,7 +24,7 @@ const Admin = () => {
 
   useEffect(() => {
     if (global.user.role !== "admin") {
-      global.navigate("/")
+      global.navigate("/404")
     }
   }, [])
 
