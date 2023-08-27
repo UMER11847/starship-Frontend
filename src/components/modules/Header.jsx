@@ -19,7 +19,7 @@ const Header = () => {
 
   const ScrollHandler = () => {
     const offSet = window.scrollY;
-    if (offSet > 200) {
+    if (offSet > 300) {
       setScrolled(true);
     } else {
       setScrolled(false);
