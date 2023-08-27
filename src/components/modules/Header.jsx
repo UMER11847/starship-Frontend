@@ -19,11 +19,26 @@ const Header = () => {
   const [ShowCart, setShowCart] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
 
+<<<<<<< HEAD
   const [cartAmount, setCartAmount] = useState(0)
 
   useEffect(() => {
     setCartAmount(Object.keys(cart).length)
   }, [cart])
+=======
+  const ScrollHandler = () => {
+    const offSet = window.scrollY;
+    if (offSet > 300) {
+      setScrolled(true);
+    } else {
+      setScrolled(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", ScrollHandler);
+  }, [scrolled]);
+>>>>>>> 9e59a909e15129b4ff14f347786cdd32f7a67cfa
 
   return (
     <>
