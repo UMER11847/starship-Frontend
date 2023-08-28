@@ -47,7 +47,7 @@ function Carousel({ images }) {
                   : "carousel_card"
               }
             >
-              <img className="card_image" src={image.image} alt="" />
+              <img style={{Maxwidth: "100vh"}} className="card_image" src={image.url} alt="" />
             </div>
           );
         })}

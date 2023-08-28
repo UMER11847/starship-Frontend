@@ -16,6 +16,7 @@ import axios from "axios";
 import StoreContext from "../../contexts/Store/Context";
 import CartContext from "../../contexts/Cart/Context";
 import Carousel from "../modules/Carousel";
+import { Box } from "@mui/material";
 
 const SingleProduct = () => {
   const [global, globalActions] = useContext(GlobalContext);
@@ -61,12 +62,7 @@ const SingleProduct = () => {
       <div className="layout">
         <div className="single-product-page">
           <div className="left">
-            <Carousel />
-            <img
-              
-              src={product.images[0].url}
-              alt={product.images[0].public_id}
-            />
+            {product.name && <Carousel images={product.images} />}
           </div>
           <div className="right">
             <span className="name">{product.name}</span>
@@ -74,7 +70,7 @@ const SingleProduct = () => {
             <span className="divider" />
             <span className="price">{product.price}$</span>
             <span className="desc">{product.description}</span>
-            <div className="cart-buttons">
+            <Box className="cart-buttons">
               <div className="quantity-buttons">
                 <span onClick={() => setAmount(amount - 1)}>-</span>
                 <span>{amount}</span>
@@ -84,7 +80,7 @@ const SingleProduct = () => {
                 <FaCartPlus size={20} />
                 {product.stock > 0 ? "ADD TO CART" : "OUT OF STOCK"}
               </button>
-            </div>
+            </Box>
 
             <span className="divider" />
 

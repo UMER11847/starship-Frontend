@@ -18,11 +18,9 @@
             }
             .left {
                 width: 100%;
-                background-color: rgba(0, 0, 0, 0.05);
                 flex-shrink: 0;
                 @include md {
                     width: 600px;
-                    height: 600px;
                 }
                 img {
                     width: 100%;
