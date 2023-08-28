@@ -21,6 +21,8 @@ import Profile from "./components/templates/Profile"
 import About from "./components/modules/About"
 import Admin from "./components/templates/Admin"
 import MyOrder from "./components/templates/MyOrder"
+import Carousel from "./components/modules/Carousel"
+import {tech} from "./components/modules/Data"
 
 const App = () => {
   const [store, storeActions] = useContext(StoreContext)
@@ -55,6 +57,8 @@ const App = () => {
       <Route path="/register" element={<Register/>} />
       <Route path="/404" element={<Error404/>} />
       <Route path="*" element={<Error404/>} />
+      <Route path="/car" element={<Carousel images={tech} />} />
+
 
      
       

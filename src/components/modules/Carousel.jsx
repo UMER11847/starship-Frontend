@@ -1,74 +1,80 @@
-import React from "react";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css"
-import "slick-carousel/slick/slick-theme.css"
-import earbuds from "../../assets/Product/earbuds.jpeg"
+import { useEffect } from "react";
+import { useState } from "react";
+import "./scss/Carousel.scss";
 
-const Carousel = () => {
-  const settings = {
-    dots: true,
-    infinite: false,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 4,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-  
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
- 
-        },
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
+function Carousel({ images }) {
+  const [current, setCurrent] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(true);
+  let timeOut = null;
+
+  useEffect(() => {
+    timeOut =
+      autoPlay &&
+      setTimeout(() => {
+        slideRight();
+      }, 2500);
+  });
+
+  const slideRight = () => {
+    setCurrent(current === images.length - 1 ? 0 : current + 1);
   };
 
+  const slideLeft = () => {
+    setCurrent(current === 0 ? images.length - 1 : current - 1);
+  };
+  console.log(current);
   return (
-    <div>
-      <h2>Responsive</h2>
-      <Slider {...settings}>
-        <div className="card">
-          <img src={earbuds} alt="" />
+    <div
+      className="carousel"
+      onMouseEnter={() => {
+        setAutoPlay(false);
+        clearTimeout(timeOut);
+      }}
+      onMouseLeave={() => {
+        setAutoPlay(true);
+      }}
+    >
+      <div className="carousel_wrapper">
+        {images.map((image, index) => {
+          return (
+            /* (condition) ? true : false */
+
+            <div
+              key={index}
+              className={
+                index == current
+                  ? "carousel_card carousel_card-active"
+                  : "carousel_card"
+              }
+            >
+              <img className="card_image" src={image.image} alt="" />
+            </div>
+          );
+        })}
+        <div className="carousel_arrow_left" onClick={slideLeft}>
+          &lsaquo;
         </div>
-        <div className="card">
-          <img src={earbuds} alt="" />
+        <div className="carousel_arrow_right" onClick={slideRight}>
+          &rsaquo;
         </div>
-        <div className="card">
-          <img src={earbuds} alt="" />
+        <div className="carousel_pagination">
+          {images.map((_, index) => {
+            return (
+              <div
+                key={index}
+                className={
+                  index == current
+                    ? "pagination_dot pagination_dot-active"
+                    : "pagination_dot"
+                }
+                onClick={() => setCurrent(index)}
+              ></div>
+            );
+          })}
         </div>
-        <div className="card">
-          <img src={earbuds} alt="" />
-        </div>
-        <div className="card">
-          <img src={earbuds} alt="" />
-        </div>
-        <div className="card">
-          <img src={earbuds} alt="" />
-        </div>
-        <div className="card">
-          <img src={earbuds} alt="" />
-        </div>
-        <div className="card">
-          <img src={earbuds} alt="" />
-        </div>
-      </Slider>
+      </div>
     </div>
   );
-};
+}
 
 export default Carousel;
-
