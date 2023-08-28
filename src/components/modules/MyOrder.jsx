@@ -1,8 +1,4 @@
-import * as React from "react";
-import PropTypes from "prop-types";
-
-// import { CardContent } from "@mui/material";
-
+import { useState } from "react";
 import {
   Box,
   Collapse,
@@ -15,27 +11,11 @@ import {
   TableRow,
   Typography,
   Paper,
-  Divider
+  Divider,
 } from "@mui/material";
 import BlankPage from "../layout/BlankPage";
-// import Divider from '@mui/material/Divider';
 
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
-// Dont do imports like this  //
-//
-// import Box from '@mui/material/Box';
-// import Collapse from '@mui/material/Collapse';
-// import IconButton from '@mui/material/IconButton';
-// import Table from '@mui/material/Table';
-// import TableBody from '@mui/material/TableBody';
-// import TableCell from '@mui/material/TableCell';
-// import TableContainer from '@mui/material/TableContainer';
-// import TableHead from '@mui/material/TableHead';
-// import TableRow from '@mui/material/TableRow';
-// import Typography from '@mui/material/Typography';
-// import Paper from '@mui/material/Paper';
-// import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-// import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 function createData(poduct, date, Qty, price) {
   return {
@@ -47,18 +27,18 @@ function createData(poduct, date, Qty, price) {
       {
         product: "Laptop",
         amount: "54$",
-         customerId: "2"
+        customerId: "2",
       },
-    ]
+    ],
   };
 }
 
 function Row(props) {
   const { row } = props;
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
-    <React.Fragment>
+    <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
         <TableCell>
           <IconButton
@@ -89,8 +69,10 @@ function Row(props) {
               <Typography variant="subtitle1" gutterBottom component="text">
                 address : sc15 road12 <br />
                 city: NYC state: <br />
-                Staten Island.<br />
-                country: USA<br />
+                Staten Island.
+                <br />
+                country: USA
+                <br />
                 zip code: 1452-78
               </Typography>
               <Divider variant="middle" />
@@ -117,117 +99,102 @@ function Row(props) {
                       </TableCell>
                     </TableRow>
                   ))}
-<TableRow>
-            <TableCell rowSpan={3} />
-            <TableCell colSpan={2} >Subtotal :</TableCell>
-            <TableCell align="right">35$</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Shipping price :</TableCell>
-            <TableCell align="right"></TableCell>
-            <TableCell align="right">46$</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell colSpan={2}>Total :</TableCell>
+                  <TableRow>
+                    <TableCell rowSpan={3} />
+                    <TableCell colSpan={2}>Subtotal :</TableCell>
+                    <TableCell align="right">35$</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>Shipping price :</TableCell>
+                    <TableCell align="right"></TableCell>
+                    <TableCell align="right">46$</TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell colSpan={2}>Total :</TableCell>
 
-            <TableCell align="right">35$</TableCell>
-          </TableRow>
-
+                    <TableCell align="right">35$</TableCell>
+                  </TableRow>
                 </TableBody>
               </Table>
             </Box>
           </Collapse>
         </TableCell>
       </TableRow>
-    </React.Fragment>
+    </>
   );
 }
 
-Row.propTypes = {
-  row: PropTypes.shape({
-    date: PropTypes.number.isRequired,
-    Qty: PropTypes.number.isRequired,
-    history: PropTypes.arrayOf(
-      PropTypes.shape({
-        amount: PropTypes.number.isRequired,
-        customerId: PropTypes.string.isRequired,
-        product: PropTypes.string.isRequired
-      })
-    ).isRequired,
-    poduct: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-  }).isRequired
-};
 
-const rows = [
-  createData("#1246234975", "", "Placed on 25 jun 34")
-];
+const rows = [createData("#1246234975", "", "Placed on 25 jun 34")];
 //CSS
 const centerTableStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   minHeight: "100vh",
-  marginBottom: "30%"
+  marginBottom: "30%",
 };
 const tableStyle = {
   maxWidth: 800,
   width: "100vh",
   borderRadius: 10,
   boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.8)",
-  padding: "80px"
+  padding: "80px",
 };
 
 const headerCellStyle = {
-  fontWeight: "bold"
+  fontWeight: "bold",
 };
 
 const tableContainer = {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
-  textAlign: "center"
+  textAlign: "center",
 };
 
 export default function MyOrder() {
   return (
-    <BlankPage >
-    <div className="center-table-style" style={centerTableStyle}>
-      <div className="table-container" style={tableContainer}>
-        <Typography variant="h3" gutterBottom color={"#8E2DE2"}>
-          My Order{" "}
-        </Typography>
-        <TableContainer
-          className="table-style"
-          component={Paper}
-          style={tableStyle}
-        >
-          <Table aria-label="collapsible table">
-            <TableHead>
-              <TableRow>
-                <TableCell />
-                <TableCell
-                  className="header-cell-style"
-                  style={headerCellStyle}
-                >
-                  Order id
-                </TableCell>
-                <TableCell align="right"></TableCell>
-                <TableCell align="right" 
-                 className="header-cell-style"
-                 style={headerCellStyle}
-                >Date</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <Row key={row.product} row={row} />
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+    <BlankPage>
+      <div className="center-table-style" style={centerTableStyle}>
+        <div className="table-container" style={tableContainer}>
+          <Typography variant="h3" gutterBottom color={"#8E2DE2"}>
+            My Order{" "}
+          </Typography>
+          <TableContainer
+            className="table-style"
+            component={Paper}
+            style={tableStyle}
+          >
+            <Table aria-label="collapsible table">
+              <TableHead>
+                <TableRow>
+                  <TableCell />
+                  <TableCell
+                    className="header-cell-style"
+                    style={headerCellStyle}
+                  >
+                    Order id
+                  </TableCell>
+                  <TableCell align="right"></TableCell>
+                  <TableCell
+                    align="right"
+                    className="header-cell-style"
+                    style={headerCellStyle}
+                  >
+                    Date
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <Row key={row.product} row={row} />
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
       </div>
-    </div>
     </BlankPage>
   );
 }

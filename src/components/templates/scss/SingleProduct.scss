@@ -112,6 +112,10 @@
                         svg {
                             margin-right: 10px;
                         }
+
+                        &:disabled {
+                            background: #c9a1ec;
+                        }
                     }
                 }
 

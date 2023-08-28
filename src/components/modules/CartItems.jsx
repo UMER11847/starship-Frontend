@@ -30,7 +30,7 @@ const CartItems = ({ item, hook, refresh }) => {
           <div className="quantity-buttons">
             <span onClick={amountHandler} >-</span>
             <span>{item.amount}</span>
-            <span onClick={amountHandler} >+</span>
+            <span onClick={(e) => (item.amount < item.stock) && amountHandler(e)} >+</span>
           </div>
           <div className="text">
             <span>{item.amount}</span>

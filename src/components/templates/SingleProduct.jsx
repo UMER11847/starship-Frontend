@@ -75,11 +75,11 @@ const SingleProduct = () => {
               <div className="quantity-buttons">
                 <span onClick={() => setAmount(amount - 1)}>-</span>
                 <span>{amount}</span>
-                <span onClick={() => setAmount(amount + 1)}>+</span>
+                <span onClick={() => (amount < product.stock) && setAmount(amount + 1)}>+</span>
               </div>
-              <button onClick={addHandler} className="add-to-cart-button">
+              <button disabled={product.stock < 1} onClick={addHandler} className="add-to-cart-button">
                 <FaCartPlus size={20} />
-                ADD TO CART
+                {product.stock > 0 ? "ADD TO CART" : "OUT OF STOCK"}
               </button>
             </div>
 

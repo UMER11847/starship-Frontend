@@ -67,8 +67,10 @@ const Login = () => {
       await login();
     } catch (err) {
       setDisableLogin(false)
-      console.log(err);
-      toast.error('Incorrect credential', {
+
+      console.log(err)
+      let msg = (err.code === "ERR_NETWORK") ? "Network error, Please chech your connection!" : 'Incorrect credential'
+      toast.error(msg, {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -83,6 +85,7 @@ const Login = () => {
 
   return (
     <BlankPage>
+      <ToastContainer />
       <FormCard style={{ maxWidth: "450px" }}>
         <header style={{ textAlign: "center", margin: "20px" }}>
           <Typography variant="h4">
@@ -133,7 +136,6 @@ const Login = () => {
               </Typography>
             </div>
             <ButtonRegin disabled={disableLogin} type="submit" variant="contained">Login</ButtonRegin>
-            <ToastContainer />
           </form>
         </main>
         <footer className="text-center" style={{ margin: "10px" }}>

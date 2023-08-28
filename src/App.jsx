@@ -55,7 +55,6 @@ const App = () => {
       <Route path="/register" element={<Register/>} />
       <Route path="/404" element={<Error404/>} />
       <Route path="*" element={<Error404/>} />
-      <Route path="/about" element={<About/>} />
 
      
       

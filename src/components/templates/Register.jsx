@@ -7,11 +7,13 @@ import GlobalContext from "../../contexts/Global/Context";
 import { Checkbox, Typography, FormControlLabel, Link } from "@mui/material";
 import BlankPage from "../layout/BlankPage";
 import FormCard from "../styles/FormCard";
+import { ToastContainer, toast } from 'react-toastify';
 // Styling
 import { GoRocket as Rocket } from "react-icons/go";
 import ButtonRegin from "../styles/ButtonRegin.style";
 import FormFieldMain from "../styles/FormFieldMain.style";
 import "../../scss/global.scss";
+import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [global, globalActions] = useContext(GlobalContext)
@@ -42,6 +44,16 @@ const Register = () => {
     } catch (err) {
       setDisableRegister(false)
       console.log(err)
+      toast.error('Credentials denied, try again!', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        });
     }
 
 
@@ -49,6 +61,7 @@ const Register = () => {
 
   return (
     <BlankPage>
+      <ToastContainer />
       <FormCard style={{ maxWidth: "450px" }}>
         <header style={{ textAlign: "center", margin: "20px" }}>
           <Typography variant="h4">
