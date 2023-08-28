@@ -146,7 +146,7 @@ export default function MyOrder() {
             }}
           >
             <Typography variant="h3" gutterBottom color={"#8E2DE2"}>
-              My Orders{" "}
+              { global.user.role === "admin" ? "All" : "My"} Orders
             </Typography>
             <Table aria-label="collapsible table">
               <TableHead>
@@ -160,7 +160,15 @@ export default function MyOrder() {
                   >
                     Order id
                   </TableCell>
-                  <TableCell align="right"></TableCell>
+                  <TableCell
+                    align="right"
+                    className="header-cell-style"
+                    style={{
+                      fontWeight: "bold",
+                    }}
+                  >
+                    Status
+                  </TableCell>
                   <TableCell
                     align="right"
                     className="header-cell-style"

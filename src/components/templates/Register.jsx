@@ -13,7 +13,6 @@ import { GoRocket as Rocket } from "react-icons/go";
 import ButtonRegin from "../styles/ButtonRegin.style";
 import FormFieldMain from "../styles/FormFieldMain.style";
 import "../../scss/global.scss";
-import 'react-toastify/dist/ReactToastify.css';
 
 const Register = () => {
   const [global, globalActions] = useContext(GlobalContext)

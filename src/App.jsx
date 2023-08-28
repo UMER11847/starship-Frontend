@@ -9,11 +9,6 @@ import Register from "./components/templates/Register"
 import Error404 from "./components/templates/Error404"
 import BlankMain from "./components/layout/BlankMain"
 import ResetPassword from "./components/templates/ResetPassword"
-// Contexts
-import StoreContext from "./contexts/Store/Context"
-import GlobalContext from "./contexts/Global/Context"
-// Styling
-import './scss/App.scss'
 import Login from "./components/templates/Login"
 import SingleProduct from "./components/templates/SingleProduct"
 import ForgotPassword from "./components/templates/ForgotPassword"
@@ -21,10 +16,18 @@ import Profile from "./components/templates/Profile"
 import About from "./components/modules/About"
 import Admin from "./components/templates/Admin"
 import MyOrder from "./components/templates/MyOrder"
+// Contexts
+import StoreContext from "./contexts/Store/Context"
+import CartContext from "./contexts/Cart/Context"
+import GlobalContext from "./contexts/Global/Context"
+// Styling
+import './scss/App.scss'
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const App = () => {
+  const [cart, cartActions] = useContext(CartContext)
   const [store, storeActions] = useContext(StoreContext)
   const [global, globalActions] = useContext(GlobalContext)
 
@@ -33,6 +36,18 @@ const App = () => {
       try {
         const res = await axios.get(global.api("/products"))
         storeActions.setProducts(res.data.products)
+        for (const item of Object.values(cart)) {
+          const resp = await axios.get(global.api("/products/") + item._id)
+          const product = resp.data.product
+          if(product.stock < item.amount) {
+            console.log("shit")
+            if (product.stock < 1) {
+              cartActions.remove(item._id)
+            } else {
+              cartActions.add({id: item._id, item: {...product, amount: product.stock}})
+            }
+          }
+        }
       } catch (err) {
         console.log(err)
       }

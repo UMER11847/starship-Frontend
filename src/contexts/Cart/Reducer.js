@@ -5,7 +5,7 @@ const CartReducer = (cart, action) => {
         case CartActions.ADD_TO_CART: {
             const obj = {
                 ...cart,
-                [action.payload.name]: action.payload.item
+                [action.payload.id]: action.payload.item
             }
             localStorage.setItem("cart", JSON.stringify(obj))
             return obj

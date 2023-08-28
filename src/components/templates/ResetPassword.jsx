@@ -10,7 +10,6 @@ import GlobalContext from "../../contexts/Global/Context";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const ResetPassword = () => {
   const [global, globalActions] = useContext(GlobalContext)

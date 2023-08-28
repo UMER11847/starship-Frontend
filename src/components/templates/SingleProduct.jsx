@@ -54,7 +54,7 @@ const SingleProduct = () => {
   }, [amount]);
 
   function addHandler() {
-    cartActions.add({ name: product.name, item: { ...product, amount } });
+    cartActions.add({ id: product._id, item: { ...product, amount } });
   }
 
   return (

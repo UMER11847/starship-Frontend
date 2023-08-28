@@ -8,7 +8,7 @@ const CartItems = ({ item, hook, refresh }) => {
 
   function amountHandler(e) {
     cartActions.add({
-      name: item.name,
+      id: item._id,
       item: {
         ...item,
         amount: (e.target.innerHTML === "+") ? item.amount + 1 : ((item.amount - 1 < 1) ? 1 : item.amount - 1 )
@@ -26,7 +26,7 @@ const CartItems = ({ item, hook, refresh }) => {
         </div>
         <div className="prod-details">
           <span className="name">{item.name}</span>
-          <MdClose onClick={() => {cartActions.remove(item.name); refresh(!hook)}} className="close-btn" />
+          <MdClose onClick={() => {cartActions.remove(item._id); refresh(!hook)}} className="close-btn" />
           <div className="quantity-buttons">
             <span onClick={amountHandler} >-</span>
             <span>{item.amount}</span>
