@@ -76,7 +76,7 @@ const Cart = ({ setShowCart }) => {
     if (paymentSecret !== "") {
       setElements(
         <Elements stripe={stripePromise} options={{clientSecret: paymentSecret}} >
-          <CheckoutForm/>
+          <CheckoutForm total={details.total} />
         </Elements>
       )
     }
@@ -93,10 +93,11 @@ const Cart = ({ setShowCart }) => {
       try {
         const res = await axios.post(global.api("/user/orders"), payload, {withCredentials:true})
         setPaymentSecret(res.data.paymentIntent)
+        setOpenModal(true)
+        cartActions.reset()
       } catch (err) {
         console.log(err)
       }
-      setOpenModal(true)
       setDisableCheckout(false)
     } else {
       global.navigate("/login")

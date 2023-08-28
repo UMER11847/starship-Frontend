@@ -1,7 +1,8 @@
 import {useStripe, useElements, PaymentElement} from '@stripe/react-stripe-js';
 import ButtonRegin from '../styles/ButtonRegin.style';
+import { Typography } from '@mui/material';
 
-const CheckoutForm = () => {
+const CheckoutForm = ({ total }) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -36,6 +37,7 @@ const CheckoutForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <PaymentElement />
+      <Typography variant='h5' sx={{marginTop: "5px"}}>Total: {total}$</Typography>
       <ButtonRegin type='submit' variant='contained' disabled={!stripe}>Place Order</ButtonRegin>
     </form>
   )
