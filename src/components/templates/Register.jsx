@@ -7,7 +7,7 @@ import GlobalContext from "../../contexts/Global/Context";
 import { Checkbox, Typography, FormControlLabel, Link } from "@mui/material";
 import BlankPage from "../layout/BlankPage";
 import FormCard from "../styles/FormCard";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 // Styling
 import { GoRocket as Rocket } from "react-icons/go";
 import ButtonRegin from "../styles/ButtonRegin.style";
@@ -61,7 +61,6 @@ const Register = () => {
 
   return (
     <BlankPage>
-      <ToastContainer />
       <FormCard style={{ maxWidth: "450px" }}>
         <header style={{ textAlign: "center", margin: "20px" }}>
           <Typography variant="h4">

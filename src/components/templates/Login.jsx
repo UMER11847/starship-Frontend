@@ -5,7 +5,7 @@ import axios from "axios";
 import GlobalContext from "../../contexts/Global/Context";
 // Components
 import { Checkbox, Typography, FormControlLabel, Link } from "@mui/material";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import BlankPage from "../layout/BlankPage";
 import FormCard from "../styles/FormCard";
 // Styling
@@ -85,7 +85,6 @@ const Login = () => {
 
   return (
     <BlankPage>
-      <ToastContainer />
       <FormCard style={{ maxWidth: "450px" }}>
         <header style={{ textAlign: "center", margin: "20px" }}>
           <Typography variant="h4">

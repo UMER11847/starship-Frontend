@@ -21,6 +21,8 @@ import Profile from "./components/templates/Profile"
 import About from "./components/modules/About"
 import Admin from "./components/templates/Admin"
 import MyOrder from "./components/templates/MyOrder"
+import { ToastContainer } from 'react-toastify';
+
 
 const App = () => {
   const [store, storeActions] = useContext(StoreContext)
@@ -38,24 +40,27 @@ const App = () => {
   }, [])
 
   return (
-    <Routes>
-      <Route path="/" element={<Main/>} >
-        <Route index element={<Home/>} />
-        <Route path="product/:id" element={<SingleProduct/>} />
-        <Route path="profile" element={<Profile/>} />
-        <Route path="admin" element={<Admin/>} />
-        <Route path="/orders" element={<MyOrder/>} />
-        <Route path="/about" element={<About/>} />
-      </Route>
-      <Route path="/password/reset" element={<BlankMain/>}>
-        <Route index element={<ForgotPassword/>}/>
-        <Route path=":token" element={<ResetPassword/>} />
-      </Route>
-      <Route path="/login" element={<Login/>} />
-      <Route path="/register" element={<Register/>} />
-      <Route path="/404" element={<Error404/>} />
-      <Route path="*" element={<Error404/>} />
-    </Routes>
+    <>
+      <ToastContainer />
+      <Routes>
+        <Route path="/" element={<Main/>} >
+          <Route index element={<Home/>} />
+          <Route path="product/:id" element={<SingleProduct/>} />
+          <Route path="profile" element={<Profile/>} />
+          <Route path="admin" element={<Admin/>} />
+          <Route path="/orders" element={<MyOrder/>} />
+          <Route path="/about" element={<About/>} />
+        </Route>
+        <Route path="/password/reset" element={<BlankMain/>}>
+          <Route index element={<ForgotPassword/>}/>
+          <Route path=":token" element={<ResetPassword/>} />
+        </Route>
+        <Route path="/login" element={<Login/>} />
+        <Route path="/register" element={<Register/>} />
+        <Route path="/404" element={<Error404/>} />
+        <Route path="*" element={<Error404/>} />
+      </Routes>
+    </>
   )
 }
 
