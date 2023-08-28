@@ -20,7 +20,7 @@ import ForgotPassword from "./components/templates/ForgotPassword"
 import Profile from "./components/templates/Profile"
 import About from "./components/modules/About"
 import Admin from "./components/templates/Admin"
-import MyOrder from "./components/modules/MyOrder"
+import MyOrder from "./components/templates/MyOrder"
 
 const App = () => {
   const [store, storeActions] = useContext(StoreContext)

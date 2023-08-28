@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import {
   Box,
   Collapse,
@@ -10,31 +10,19 @@ import {
   TableHead,
   TableRow,
   Typography,
-  Paper,
   Divider,
 } from "@mui/material";
 import BlankPage from "../layout/BlankPage";
+import TextRestrain from "../styles/TextRestrain";
 
 import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
+import axios from "axios";
+import GlobalContext from "../../contexts/Global/Context";
+import BasicCard from "../styles/BasicCard";
 
-function createData(poduct, date, Qty, price) {
-  return {
-    poduct,
-    date,
-    Qty,
-    price,
-    history: [
-      {
-        product: "Laptop",
-        amount: "54$",
-        customerId: "2",
-      },
-    ],
-  };
-}
 
-function Row(props) {
-  const { row } = props;
+
+function Row({ order, admin }) { 
   const [open, setOpen] = useState(false);
 
   return (
@@ -54,26 +42,30 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {row.poduct}
+          {order._id}
         </TableCell>
-        <TableCell align="right">{row.date}</TableCell>
-        <TableCell align="right">{row.Qty}</TableCell>
+        <TableCell align="right">{order.orderStatus}</TableCell>
+        <TableCell align="right">{new Date(order.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', })}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <Typography variant="h6" gutterBottom component="div">
-                Address
+                Details
               </Typography>
-              <Typography variant="subtitle1" gutterBottom component="text">
-                address : sc15 road12 <br />
-                city: NYC state: <br />
-                Staten Island.
-                <br />
-                country: USA
-                <br />
-                zip code: 1452-78
+              <Typography variant="subtitle1" gutterBottom>
+                {admin ? (
+                  <span>
+                    Name: {order.user.name}<br/>
+                    Email: {order.user.email}<br/>
+                  </span>
+                ) : "" }
+                Address : {order.address.address} <br />
+                City: {order.address.city} <br />
+                State: {order.address.state} <br />
+                Country: {order.address.country} <br />
+                Zip Code: {order.address.zipCode}
               </Typography>
               <Divider variant="middle" />
 
@@ -87,32 +79,32 @@ function Row(props) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {row.history.map((historyRow) => (
-                    <TableRow key={historyRow.product}>
+                  {order.orderItems.map((item) => (
+                    <TableRow key={item.product}>
                       <TableCell component="th" scope="row">
-                        {historyRow.product}
+                        <TextRestrain maxWidth="200px">
+                        {item.name}
+                        </TextRestrain>
                       </TableCell>
-                      <TableCell>{historyRow.customerId}</TableCell>
-                      <TableCell align="right">{historyRow.amount}</TableCell>
+                      <TableCell>{item.quantity}</TableCell>
+                      <TableCell align="right">{item.price}$</TableCell>
                       <TableCell align="right">
-                        {Math.round(historyRow.amount * row.price * 100) / 100}
+                        {item.quantity * item.price}$
                       </TableCell>
                     </TableRow>
                   ))}
                   <TableRow>
                     <TableCell rowSpan={3} />
-                    <TableCell colSpan={2}>Subtotal :</TableCell>
-                    <TableCell align="right">35$</TableCell>
+                    <TableCell colSpan={2}>Subtotal:</TableCell>
+                    <TableCell align="right">{order.subtotal}$</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>Shipping price :</TableCell>
-                    <TableCell align="right"></TableCell>
-                    <TableCell align="right">46$</TableCell>
+                    <TableCell colSpan={2}>Shipping:</TableCell>
+                    <TableCell align="right">{order.shippingPrice}$</TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell colSpan={2}>Total :</TableCell>
-
-                    <TableCell align="right">35$</TableCell>
+                    <TableCell colSpan={2}>Total:</TableCell>
+                    <TableCell align="right">{order.totalPrice}$</TableCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -124,55 +116,47 @@ function Row(props) {
   );
 }
 
-
-const rows = [createData("#1246234975", "", "Placed on 25 jun 34")];
-//CSS
-const centerTableStyle = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  minHeight: "100vh",
-  marginBottom: "30%",
-};
-const tableStyle = {
-  maxWidth: 800,
-  width: "100vh",
-  borderRadius: 10,
-  boxShadow: "0px 3px 6px rgba(0, 0, 0, 0.8)",
-  padding: "80px",
-};
-
-const headerCellStyle = {
-  fontWeight: "bold",
-};
-
-const tableContainer = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  textAlign: "center",
-};
-
 export default function MyOrder() {
+  const [global, globalActions] = useContext(GlobalContext)
+
+  const [orders, setOrders] = useState([])
+
+  const getOrdersFromApi = useCallback(async function() {
+    try {
+      const res = await axios.get(global.api(global.user.role === "admin" ? "/orders" : "/user/orders"), {withCredentials: true})
+      setOrders(res.data.orders)
+    } catch (err) {
+      console.log(err)
+    }
+  }, [])
+
+  useEffect(() => {
+    getOrdersFromApi()
+    if (!global.user.loggedIn) global.navigate("/login?next=/orders")
+  }, [])
+
   return (
     <BlankPage>
-      <div className="center-table-style" style={centerTableStyle}>
-        <div className="table-container" style={tableContainer}>
-          <Typography variant="h3" gutterBottom color={"#8E2DE2"}>
-            My Order{" "}
-          </Typography>
+      <BasicCard  sx={{ margin: "40px auto" }}>
           <TableContainer
             className="table-style"
-            component={Paper}
-            style={tableStyle}
+            style={{
+              padding: "10px 0px",
+              overflowX: "hidden"
+            }}
           >
+            <Typography variant="h3" gutterBottom color={"#8E2DE2"}>
+              My Orders{" "}
+            </Typography>
             <Table aria-label="collapsible table">
               <TableHead>
                 <TableRow>
                   <TableCell />
                   <TableCell
                     className="header-cell-style"
-                    style={headerCellStyle}
+                    style={{
+                      fontWeight: "bold",
+                    }}
                   >
                     Order id
                   </TableCell>
@@ -180,21 +164,22 @@ export default function MyOrder() {
                   <TableCell
                     align="right"
                     className="header-cell-style"
-                    style={headerCellStyle}
+                    style={{
+                      fontWeight: "bold",
+                    }}
                   >
                     Date
                   </TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row) => (
-                  <Row key={row.product} row={row} />
+                {orders.map((order) => (
+                  <Row key={order._id} order={order} admin={global.user.role === "admin"} />
                 ))}
               </TableBody>
             </Table>
           </TableContainer>
-        </div>
-      </div>
+      </BasicCard>
     </BlankPage>
   );
 }
