@@ -7,7 +7,7 @@ import GlobalContext from "../../contexts/Global/Context";
 import { Checkbox, Typography, FormControlLabel, Link } from "@mui/material";
 import BlankPage from "../layout/BlankPage";
 import FormCard from "../styles/FormCard";
-import { toast } from 'react-toastify';
+import toaster from "../../utils/toaster";
 // Styling
 import { GoRocket as Rocket } from "react-icons/go";
 import ButtonRegin from "../styles/ButtonRegin.style";
@@ -40,22 +40,19 @@ const Register = () => {
       const res = await axios.post(global.api("/user/register"), payload, {withCredentials:true})
       globalActions.updateUser(res.data.user)
       global.navigate("/")
+      toaster("success", "Registered account successfully")
     } catch (err) {
       setDisableRegister(false)
       console.log(err)
-      toast.error('Credentials denied, try again!', {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        });
+
+      let msg
+      if(err.response) {
+        msg = err.response.data.message
+      } else {
+        msg = err.message
+      }
+      toaster("error", msg)
     }
-
-
   }
 
   return (

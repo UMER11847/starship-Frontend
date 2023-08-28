@@ -21,6 +21,7 @@ import StoreContext from "../../../contexts/Store/Context";
 // Styling
 import BasicCard from "../../styles/BasicCard";
 import TextRestrain from "../../styles/TextRestrain";
+import toaster from "../../../utils/toaster";
 
 
 const TabProducts = () => {
@@ -126,8 +127,16 @@ const TabProducts = () => {
       storeActions.setProducts([...store.products, res.data.product])
       setFormData(emptyForm)
       setUploadedFiles([])
+      toaster("success", "Added product successfully")
     } catch (err) {
       console.log(err)
+      let msg
+      if(err.response) {
+        msg = err.response.data.message
+      } else {
+        msg = err.message
+      }
+      toaster("error", msg)
     }
     setDisableAdd(false)
   }
@@ -168,8 +177,16 @@ const TabProducts = () => {
       setDelPics([])
       setListPics([])
       setUploadedFiles([])
+      toaster("success", "Updated product successfully")
     } catch (err) {
       console.log(err)
+      let msg
+      if(err.response) {
+        msg = err.response.data.message
+      } else {
+        msg = err.message
+      }
+      toaster("error", msg)
     }
     setDisableAdd(false)
 
@@ -187,8 +204,16 @@ const TabProducts = () => {
     try {
       await axios.delete(global.api("/products/") + id, {withCredentials:true})
       storeActions.setProducts(store.products.filter((item) => item._id !== id))
+      toaster("success", "Deleted product successfully")
     } catch (err) {
       console.log(err)
+      let msg
+      if(err.response) {
+        msg = err.response.data.message
+      } else {
+        msg = err.message
+      }
+      toaster("error", msg)
     }
     setDisableDelete(false)
   }

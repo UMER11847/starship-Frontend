@@ -15,6 +15,7 @@ import GlobalContext from "../../../contexts/Global/Context";
 // Styling
 import BasicCard from "../../styles/BasicCard";
 import TextRestrain from "../../styles/TextRestrain";
+import toaster from "../../../utils/toaster";
 
 const TabAddresses = ({ addresses, setAddresses }) => {
   const [global, globalActions] = useContext(GlobalContext);
@@ -76,8 +77,16 @@ const TabAddresses = ({ addresses, setAddresses }) => {
           return addr;
         })
       );
+      toaster("success", "Success")
     } catch (err) {
       console.log(err);
+      let msg
+      if(err.response) {
+        msg = err.response.data.message
+      } else {
+        msg = err.message
+      }
+      toaster("error", msg)
     }
     setDisableAdd(false);
   }
@@ -115,8 +124,16 @@ const TabAddresses = ({ addresses, setAddresses }) => {
         withCredentials: true,
       });
       setAddresses(addresses.filter((addr) => addr._id !== id));
+      toaster("success", "Deleted Address Successfully")
     } catch (err) {
       console.log(err);
+      let msg
+      if(err.response) {
+        msg = err.response.data.message
+      } else {
+        msg = err.message
+      }
+      toaster("error", msg)
     }
     setDisableDelete(false);
   }
@@ -175,7 +192,13 @@ const TabAddresses = ({ addresses, setAddresses }) => {
           <Grid item xs={12}>
             <Button
               variant="contained"
-              sx={{ background: "#9676F4", marginRight: "20px" }}
+              sx={{
+                background: "#9676F4",
+                marginRight: "20px",
+                "&:hover": {
+                  background: "#7e67c2"
+                }
+              }}
               onClick={requestHandler}
               disabled={disableAdd}
             >

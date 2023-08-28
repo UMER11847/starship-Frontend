@@ -8,6 +8,7 @@ import { GoRocket as Rocket } from "react-icons/go";
 import { useContext, useEffect, useState } from "react";
 import GlobalContext from "../../contexts/Global/Context";
 import axios from "axios";
+import toaster from "../../utils/toaster";
 
 const ForgotPassword = () => {
   const [global, globalActions] = useContext(GlobalContext)
@@ -28,8 +29,16 @@ const ForgotPassword = () => {
       }
       await axios.put(global.api("/user/password/reset"), payload)
       global.navigate("/login")
+      toaster("success", "Link sent successfully, Please check your email")
     } catch (err) {
       console.log(err)
+      let msg
+      if(err.response) {
+        msg = err.response.data.message
+      } else {
+        msg = err.message
+      }
+      toaster("error", msg)
     }
     setDisableSubmit(false)
   }

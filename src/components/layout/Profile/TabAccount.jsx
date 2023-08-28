@@ -13,6 +13,7 @@ import {
 import GlobalContext from "../../../contexts/Global/Context"
 // Assets
 import defaultAvatar from "../../../assets/Profile/default-avatar-profile-icon-social-media-user-vector-image-400-242023490.jpg";
+import toaster from "../../../utils/toaster";
 
 
 const TabAccount = () => {
@@ -70,8 +71,16 @@ const TabAccount = () => {
       const res = await axios.put(global.api("/user"), form, {withCredentials:true})
       globalActions.updateUser(res.data.user)
       localStorage.setItem("email", formData.email)
+      toaster("success", "Profile updated successfully")
     } catch (err) {
       console.log(err)
+      let msg
+      if(err.response) {
+        msg = err.response.data.message
+      } else {
+        msg = err.message
+      }
+      toaster("error", msg)
     }
     setDisableSave(false)
   }

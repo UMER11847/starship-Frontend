@@ -17,6 +17,7 @@ import StoreContext from "../../contexts/Store/Context";
 import CartContext from "../../contexts/Cart/Context";
 import Carousel from "../modules/Carousel";
 import { Box } from "@mui/material";
+import toaster from "../../utils/toaster";
 
 const SingleProduct = () => {
   const [global, globalActions] = useContext(GlobalContext);
@@ -55,6 +56,7 @@ const SingleProduct = () => {
 
   function addHandler() {
     cartActions.add({ id: product._id, item: { ...product, amount } });
+    toaster("success", "Added to cart")
   }
 
   return (

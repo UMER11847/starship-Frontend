@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 // Contexts
 import GlobalContext from "../../../contexts/Global/Context";
+import toaster from "../../../utils/toaster";
 
 const TabSecurity = () => {
   const [global, globalActions] = useContext(GlobalContext)
@@ -41,8 +42,16 @@ const TabSecurity = () => {
       }, {withCredentials:true})
       setFormData(emptyForm)
       localStorage.setItem("password", formData.newPassword)
+      toaster("success", "Password Updated Successfully")
     } catch (err) {
       console.log(err)
+      let msg
+      if(err.response) {
+        msg = err.response.data.message
+      } else {
+        msg = err.message
+      }
+      toaster("error", msg)
     }
     setDisableSubmit(false)
   }

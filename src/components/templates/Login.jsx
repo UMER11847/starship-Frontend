@@ -5,7 +5,7 @@ import axios from "axios";
 import GlobalContext from "../../contexts/Global/Context";
 // Components
 import { Checkbox, Typography, FormControlLabel, Link } from "@mui/material";
-import { toast } from 'react-toastify';
+import toaster from "../../utils/toaster";
 import BlankPage from "../layout/BlankPage";
 import FormCard from "../styles/FormCard";
 // Styling
@@ -64,21 +64,18 @@ const Login = () => {
 
     try {
       await login();
+      toaster("success", "Logged in successfully")
     } catch (err) {
       setDisableLogin(false)
 
       console.log(err)
-      let msg = (err.code === "ERR_NETWORK") ? "Network error, Please chech your connection!" : 'Incorrect credential'
-      toast.error(msg, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        });
+      let msg
+      if(err.response) {
+        msg = err.response.data.message
+      } else {
+        msg = err.message
+      }
+      toaster("error", msg)
     }
   }
 

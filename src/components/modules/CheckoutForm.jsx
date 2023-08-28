@@ -1,6 +1,7 @@
 import {useStripe, useElements, PaymentElement} from '@stripe/react-stripe-js';
 import ButtonRegin from '../styles/ButtonRegin.style';
 import { Typography } from '@mui/material';
+import toaster from '../../utils/toaster';
 
 const CheckoutForm = ({ total }) => {
   const stripe = useStripe();
@@ -25,7 +26,10 @@ const CheckoutForm = ({ total }) => {
 
         if (result.error) {
         // Show error to your customer (for example, payment details incomplete)
-        console.log(result.error.message);
+          console.log(result.error.message);
+          toaster("success", result.error.message)
+        } else {
+          toaster("success", "Placed order successfully")
         }
        
     } catch (err) {

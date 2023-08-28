@@ -24,6 +24,7 @@ import GlobalContext from "./contexts/Global/Context"
 import './scss/App.scss'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import toaster from "./utils/toaster"
 
 
 const App = () => {
@@ -50,6 +51,13 @@ const App = () => {
         }
       } catch (err) {
         console.log(err)
+        let msg
+        if(err.response) {
+          msg = err.response.data.message
+        } else {
+          msg = err.message
+        }
+        toaster("error", msg)
       }
     })()
   }, [])
