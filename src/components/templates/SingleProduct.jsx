@@ -15,6 +15,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import StoreContext from "../../contexts/Store/Context";
 import CartContext from "../../contexts/Cart/Context";
+import Carousel from "../modules/Carousel";
 
 const SingleProduct = () => {
   const [global, globalActions] = useContext(GlobalContext);
@@ -60,7 +61,9 @@ const SingleProduct = () => {
       <div className="layout">
         <div className="single-product-page">
           <div className="left">
+            <Carousel />
             <img
+              
               src={product.images[0].url}
               alt={product.images[0].public_id}
             />
