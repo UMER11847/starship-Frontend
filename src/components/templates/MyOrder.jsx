@@ -124,7 +124,7 @@ export default function MyOrder() {
   const getOrdersFromApi = useCallback(async function() {
     try {
       const res = await axios.get(global.api(global.user.role === "admin" ? "/orders" : "/user/orders"), {withCredentials: true})
-      setOrders(res.data.orders)
+      setOrders(res.data.orders.reverse())
     } catch (err) {
       console.log(err)
     }
